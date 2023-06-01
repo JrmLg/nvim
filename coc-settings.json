@@ -1,0 +1,11 @@
+{
+    "explorer.width": 40,
+    "explorer.toggle": true,
+    "explorer.contentWidth": 40,
+    "explorer.icon.enableNerdfont": true,
+    "explorer.quitOnOpen": true,
+    "coc.preferences.formatOnType": true,
+    "coc.preferences.formatOnSave": true,
+    "explorer.file.showHiddenFiles": true,
+    "snippets.ultisnips.pythonPrompt": false,
+}
