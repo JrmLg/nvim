@@ -17,7 +17,7 @@ dap.adapters.python = function(callback, config)
     else
         callback({
           type = 'executable',
-          command = vim.fn.stdpath('config') .. '/plug-requirement/dap/python/venv/Scripts/python',
+          command =  vim.fn.getenv('LOCALAPPDATA') .. '/Programs/Python/Python311/python',
           args = { '-m', 'debugpy.adapter'},
           detached = true,
           options = {
@@ -49,7 +49,7 @@ dap.configurations.python = {{
       elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
         return cwd .. '/.venv/bin/python'
       else
-        return vim.fn.getenv('LOCALAPPDATA') .. '/Programs/Python/Python311/python'
+        return vim.fn.getenv('LOCALAPPDATA') .. '/Programs/Python/Python311/pythonw'
       end
     end;
 }}

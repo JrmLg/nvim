@@ -23,6 +23,7 @@ npm install:
 
 pip install:
  + pip install neovim
+ + pip install debugpy
 
 Add to environement PATH :
  + C:\Program Files\nodejs\
