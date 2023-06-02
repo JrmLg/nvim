@@ -24,15 +24,8 @@ cnoremap <M-k> <up>
 cnoremap <M-H> <C-o>^
 cnoremap <M-L> <C-o>$
 
-" -------------------------- Change window opacity ---------------------------
-" nnoremap <M-t> :call AlacrittyChangeOpacity()<CR>
-" nnoremap <M-T> :call AlacrittySetOpacityValue(0.04)<CR>
-" nnoremap <M-+> :call AlacrittyIncreaseOpacity(0.02)<CR>
-" nnoremap <M--> :call AlacrittyDecreaseOpacity(0.02)()<CR>
-
 " ---------- Change normal key binding because of conflic with tab -----------
 nnoremap <C-p> <C-i>
-nnoremap <CSI><C-S-P> :echo "Salut Ctrl+Shift+P"<CR>
 
 " ------------------------ Switching between buffers -------------------------
 nnoremap <silent><S-TAB> :bprev<CR>
@@ -44,21 +37,6 @@ nnoremap <silent> <Leader>tl :tabnext<CR>
 nnoremap <silent> <Leader>tt :tab split<CR>
 nnoremap <silent> <Leader>tn :tabnew<CR>
 nnoremap <silent> <Leader>tc :tabclose<CR>
-
-" --------------------------- Test binding special ---------------------------
-nnoremap <C-S-p> :echo "Shortcut work."
-" nnoremap <C-S-P> :echo "Ok mapping for C-S-P work in nvim !"<CR>
-" nnoremap <ESC>80;6u :echo "bonjour toi 0!"<CR>
-" nnoremap <ESC>[80;6u :echo "bonjour toi 1!"<CR>
-" nnoremap <ESC-80;6u> :echo "bonjour toi 2!"<CR>
-" nnoremap <ESC><C-S-P> :echo "bonjour toi 3!"<CR>
-" nnoremap <ESC><C-S-P> :echo "bonjour toi 3!"<CR>
-" nnoremap <CSI>80;6u :echo "bonjour toi 3!"<CR>
-" nnoremap ^[H :echo "bonjour toi 5"<CR>
-" noremap ^[[105;5~ <C-I>
-" nnoremap <C-I> :echo "ok"<CR>
-" nnoremap ^[[105;5~ :echo "bonjour"<CR>
- 
 
 " -------------------------- Alternate way to save ---------------------------
 nnoremap <C-s :w<CR>
@@ -99,9 +77,15 @@ nnoremap <silent><Leader>v :vsplit<CR>
 nnoremap <silent><Leader>h :split<CR>
 
 
-" --------------------- Overwrite settings of alacritty ----------------------
-noremap <C-v> <C-v>
-noremap <C-a> <C-a>
+" -------------------------- Better git navigation  --------------------------
+nnoremap <Leader>gg :Git<CR>
+nnoremap <Leader>g :Gitsigns preview_hunk_inline<CR>
+nnoremap <Leader>gj :Gitsigns next_hunk<CR>
+nnoremap <Leader>gk :Gitsigns prev_hunk<CR>
+nnoremap <Leader>gr :Gitsigns reset_hunk<CR>
+nnoremap <Leader>gR :Gitsigns reset_buffer<CR>
+nnoremap <Leader>gb :Gitsigns blame_line<CR>
+nnoremap <Leader>gd :Gitsigns toggle_deleted<CR>
 
 " ---------------------- Use vv for escape visual mode -----------------------
 vnoremap vv <Esc> 

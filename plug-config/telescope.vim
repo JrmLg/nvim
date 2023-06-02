@@ -8,10 +8,17 @@ function TelescopeFindFilesDynamicPath(withConfigPath=0)
         let cfp = expand('%:p:h:h')
     endif
 
-    if a:withConfigPath && stridx(cwd, con) == -1
-        call add(search_dirs, '"' . escape(con, '\') . '"')
+    if stridx(cwd, con) == -1
+        if a:withConfigPath
+            call add(search_dirs, '"' . escape(con, '\') . '"')
+            let bookmarks = con .. "/bookmarks/"
+            call add(search_dirs, '"' . escape(bookmarks, '\') . '"')
+        endif
+    else
+        let bookmarks = con .. "/bookmarks/"
+        call add(search_dirs, '"' . escape(bookmarks, '\') . '"')
     endif
-    
+
     if cfp != cwd
         if stridx(cwd, cfp) == -1
             if !a:withConfigPath || stridx(cwd, con) == -1 

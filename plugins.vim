@@ -5,6 +5,7 @@ call plug#begin('~/AppData/Local/nvim/autoload/plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'ap/vim-css-color'
+    Plug 'equalsraf/neovim-gui-shim'
 
 " -------------------------- Help with translation ---------------------------
     Plug 'voldikss/vim-translator'
