@@ -7,6 +7,7 @@ Install :
  + Neovim
  + NodeJs (Last version)
  + choco
+ + python3
 
 choco install:
  + choco install mingw

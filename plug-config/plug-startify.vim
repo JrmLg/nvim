@@ -53,3 +53,10 @@ function BeforeStartifySave()
     execute "wa!"
     call CloseCocExplorer()
 endfunction
+
+" If startify open a directory, coc-explorer is open instead of netrw
+augroup MyCocExplorer
+  autocmd!
+  autocmd VimEnter * sil! au! FileExplorer *
+  autocmd BufEnter * let d = expand('%') | if isdirectory(d) | silent! bd | exe 'CocCommand explorer ' . d | endif
+augroup END
