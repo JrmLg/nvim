@@ -8,12 +8,21 @@ Install :
  + NodeJs (Last version)
  + choco
  + python3
+ + npm
+ + pip
 
 choco install:
  + choco install mingw
  + choco install make
  + choco install cmake
  + choco install ripgrep
+
+npm install:
+ + npm install -g tree-sitter-cli
+ + npm install -g neovim
+
+pip install:
+ + pip install neovim
 
 Add to environement PATH :
  + C:\Program Files\nodejs\
@@ -26,6 +35,7 @@ Install the vim-plug (Pluggins manager) : https://github.com/junegunn/vim-plug
 
 Open nvim-qt and run command:
  + PlugInstall
+
 
 Create Directory bookmarks (optional):
  + Add file bookmarks.vim
