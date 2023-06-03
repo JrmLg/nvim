@@ -1,11 +1,11 @@
 
 " ---------------------- Disable auto resizing windows -----------------------
-" let g:lens#disabled = 1
+let g:lens#disabled = 1
 
 " ---------------------------- Disable animation -----------------------------
-let g:lens#animate = 0
+let g:lens#animate = 1
 
-let g:lens#disabled_filetypes = ['coc-list*', 'nerdtree', 'coc-explorer', 'fzf'] " , 'vim'
+let g:lens#disabled_filetypes = ['figitiveblame', 'coc-list*', 'nerdtree', 'coc-explorer', 'fzf'] " , 'vim'
 " let g:lens#disabled_buftypes = [] 
 " let g:lens#disabled_filenames = []
 
@@ -42,7 +42,6 @@ endfunction
 
 " autocmd WinEnter * call TestLens()
 
-
-nnoremap <silent><C-m> :call AutoResizeCurrentScreen()<CR>
+nnoremap <silent><C-S-M> :call AutoResizeCurrentScreen()<CR>
 
 

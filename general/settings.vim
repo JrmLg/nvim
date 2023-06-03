@@ -41,12 +41,6 @@ set foldlevel=5
 set listchars=tab:=>,eol:$
 set virtualedit=onemore                 " Allow the cursor to move just past the end of the line
 
-
-" set nohls
-"set clipboard=unnamedplus               " Copy paste between vim and everything else
-"set autochdir                           " Your working directory will always be the same as your working directory
-source $VIMRUNTIME/mswin.vim
-
 :autocmd Filetype * setlocal formatoptions=cnrqjl " Overwrite ftplugin for formatoptions
 
 

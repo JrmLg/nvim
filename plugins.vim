@@ -8,7 +8,7 @@ call plug#begin('~/AppData/Local/nvim/autoload/plugged')
     Plug 'equalsraf/neovim-gui-shim'
 
 " -------------------------- Help with translation ---------------------------
-    Plug 'voldikss/vim-translator'
+    Plug 'uga-rosa/translate.nvim'
     
 " ----------------------------- Code completion ------------------------------
     Plug 'windwp/nvim-autopairs'

@@ -1,8 +1,8 @@
 
 " ------------------ Reload mapping without restarting nvim ------------------
 nnoremap <Leader><Leader>r :source $MYVIMRC<CR>
-nnoremap <Leader><Leader>c :source %<CR>
-nnoremap <Leader><Leader>l :luafile %<CR>
+nnoremap <Leader><Leader>c :w<CR>:source %<CR>
+nnoremap <Leader><Leader>l :w<CR>:luafile %<CR>
 
 " ----------------------- Better nav for omnicomplete ------------------------
 inoremap <expr> <C-j> ("\<C-n>")
@@ -16,7 +16,7 @@ inoremap <M-k> <up>
 inoremap <M-H> <C-o>^
 inoremap <M-L> <C-o>$
 
-" ----------------------- Move cursor in command-line ------------------------
+" ------------------------ Better command navigation -------------------------
 cnoremap <M-l> <right>
 cnoremap <M-h> <left>
 cnoremap <M-j> <down>
@@ -45,10 +45,8 @@ nnoremap <C-q> :w <bar> bd<CR>
 " -------------- Alternate way to close buffer and keep window ---------------
 nnoremap <silent><C-c> :bp\|:bd #<CR>
 
-
 " ---------------------------- Tab for completion ----------------------------
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-
 
 " ------------------------------ Better tabbing ------------------------------
 vnoremap < <gv
@@ -76,16 +74,16 @@ nnoremap <silent><C-l>    :vertical resize +2<CR>
 nnoremap <silent><Leader>v :vsplit<CR>
 nnoremap <silent><Leader>h :split<CR>
 
-
-" -------------------------- Better git navigation  --------------------------
-nnoremap <Leader>gg :Git<CR>
-nnoremap <Leader>g :Gitsigns preview_hunk_inline<CR>
-nnoremap <Leader>gj :Gitsigns next_hunk<CR>
-nnoremap <Leader>gk :Gitsigns prev_hunk<CR>
-nnoremap <Leader>gr :Gitsigns reset_hunk<CR>
-nnoremap <Leader>gR :Gitsigns reset_buffer<CR>
-nnoremap <Leader>gb :Gitsigns blame_line<CR>
-nnoremap <Leader>gd :Gitsigns toggle_deleted<CR>
+" -------------------------- Better git navigation ---------------------------
+nnoremap <silent><Leader>gg :Git<CR>
+nnoremap <silent><Leader>g :Gitsigns preview_hunk_inline<CR>
+nnoremap <silent><Leader>gj :Gitsigns next_hunk<CR>
+nnoremap <silent><Leader>gk :Gitsigns prev_hunk<CR>
+nnoremap <silent><Leader>gr :Gitsigns reset_hunk<CR>
+nnoremap <silent><Leader>gR :Gitsigns reset_buffer<CR>
+nnoremap <silent><Leader>gd :Gitsigns toggle_deleted<CR>
+nnoremap <silent><Leader>gl :Gclog<CR>
+nnoremap <silent><Leader>gb :G blame<CR>
 
 " ---------------------- Use vv for escape visual mode -----------------------
 vnoremap vv <Esc> 
@@ -98,9 +96,7 @@ inore <C-e> <ESC>:call SelectMathExpression()<CR>c<C-r>=<C-r>"<CR>
 nnore <C-e> :call SelectMathExpression()<CR>c<C-r>=<C-r>"<CR><ESC>
 vnore <C-e> c<C-r>=<C-r>"<CR>
 
-
 " ------------------------------ Debugging keys ------------------------------
-"
 nnoremap <F5> :lua require('dap').continue()<CR>
 nnoremap <F4> :lua require('dap').step_out()<CR>
 nnoremap <F3> :lua require('dap').step_over()<CR>
@@ -113,7 +109,16 @@ nnoremap <Leader>du :lua require('dapui').open()<CR>
 
 " ------------------------- Mapping for coc explorer -------------------------
 nnoremap <silent> <Leader><TAB> :CocCommand explorer<CR>
-" nnoremap <silent> <Leader><TAB> :call OpenCocExplorerWithoutAnimation()<CR>
 
-
+" ----------------------------- Windows shortcut -----------------------------
+nnoremap <C-S> :update<CR>
+inoremap <C-S> :update<CR>
+vnoremap <C-S> :update<CR>
+vnoremap <C-X> "+x
+vnoremap <C-C> "+y
+cnoremap <C-V> <C-R>*
+inoremap <C-V> <C-R>*
+nnoremap <C-A> ggvG
+inoremap <C-A> <ESC>ggvG
+vnoremap <C-A> <ESC>ggvG
 

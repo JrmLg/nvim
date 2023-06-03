@@ -35,23 +35,39 @@ let g:ascii = [
 
 let g:startify_custom_header = g:ascii + startify#fortune#boxed()
 
-function CloseCocExplorer()
-    let buffers = nvim_list_bufs()
-    for b in buffers
-        let is_loaded = nvim_buf_is_loaded(b)
+" function CloseCocExplorer()
+"     let buffers = nvim_list_bufs()
+"     for b in buffers
+"         let is_loaded = nvim_buf_is_loaded(b)
 
-        if is_loaded
-            let b_filetype = getbufvar(b, '&filetype')
-            if b_filetype == "coc-explorer"
-                execute "bd!" . b
-            endif
-        endif
-    endfor
-endfunction
+"         if is_loaded
+"             let b_filetype = getbufvar(b, '&filetype')
+"             if b_filetype == "coc-explorer"
+"                 execute "bd!" . b
+"             endif
+"         endif
+"     endfor
+" endfunction
+
+let g:filtename_to_close = []
+let g:buftype_to_close = ['help']
+let g:filtetype_to_close = ['coc-explorer', 'fugitiveblame']
 
 function BeforeStartifySave()
     execute "wa!"
-    call CloseCocExplorer()
+    for b in nvim_list_bufs()
+        let is_loaded = nvim_buf_is_loaded(b)
+
+        if is_loaded
+            let filetype = getbufvar(b, '&filetype')
+            let buftype = getbufvar(b, '&buftype')
+            let filename = fnamemodify(bufname(b), ':t')
+
+            if index(g:filtetype_to_close , filetype) != -1 || index(g:filtename_to_close , filename) != -1 || index(g:buftype_to_close, buftype) != -1
+                execute "bd! " . b
+            endif
+        endif
+    endfor
 endfunction
 
 " If startify open a directory, coc-explorer is open instead of netrw
