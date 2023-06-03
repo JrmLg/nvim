@@ -118,7 +118,6 @@ vnoremap <C-X> "+x
 vnoremap <C-C> "+y
 cnoremap <C-V> <C-R>*
 inoremap <C-V> <C-R>*
-nnoremap <C-A> ggvG
 inoremap <C-A> <ESC>ggvG
 vnoremap <C-A> <ESC>ggvG
 

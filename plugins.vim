@@ -38,6 +38,9 @@ call plug#begin('~/AppData/Local/nvim/autoload/plugged')
     Plug 'vim-scripts/ReplaceWithRegister'
     Plug 'vim-scripts/loremipsum'
 
+" ----------------------------- Storage helpers ------------------------------
+    Plug '907th/vim-auto-save'
+
 " ---------------------------- Debug code helpers ----------------------------
     Plug 'mfussenegger/nvim-dap'
     Plug 'rcarriga/nvim-dap-ui'
