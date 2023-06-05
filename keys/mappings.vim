@@ -45,9 +45,6 @@ nnoremap <C-q> :w <bar> bd<CR>
 " -------------- Alternate way to close buffer and keep window ---------------
 nnoremap <silent><C-c> :bp\|:bd #<CR>
 
-" ---------------------------- Tab for completion ----------------------------
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-
 " ------------------------------ Better tabbing ------------------------------
 vnoremap < <gv
 vnoremap > >gv
@@ -120,4 +117,9 @@ cnoremap <C-V> <C-R>*
 inoremap <C-V> <C-R>*
 inoremap <C-A> <ESC>ggvG
 vnoremap <C-A> <ESC>ggvG
+
+" -------------------------- Better code navigation --------------------------
+nnoremap <silent><M-*> :let last_win_pos=winsaveview()<CR>:keepjumps normal! mi*`i<CR>:call winrestview(last_win_pos)<CR>
+vnoremap <silent><M-*> :<C-w>let last_win_pos=winsaveview()<CR>:let @/=getline("'<")[getpos("'<")[2]-1:getpos("'>")[2]-1]<CR>:keepjumps normal! mi//`i<CR>:call winrestview(last_win_pos)<CR>:set hls<CR>
+
 
