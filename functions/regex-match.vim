@@ -28,6 +28,9 @@ function SelectMathExpression()
     if (end_match)
         call search(re, '', start_line)
         normal v
+        if &selection == 'inclusive'
+            let end_match = end_match - 1
+        endif 
         call cursor(start_line, end_match)
         normal l
     endif
