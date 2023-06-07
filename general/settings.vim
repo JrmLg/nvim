@@ -40,6 +40,7 @@ set foldmethod=indent                   " more indent means a higher fold level
 set foldlevel=5
 set listchars=tab:=>,eol:$
 set virtualedit=onemore                 " Allow the cursor to move just past the end of the line
+set selection=exclusive
 
 :autocmd Filetype * setlocal formatoptions=cnrqjl " Overwrite ftplugin for formatoptions
 
