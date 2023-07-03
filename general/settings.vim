@@ -29,7 +29,7 @@ set showtabline=2                       " Always show tabs
 set noshowmode                          " We don't need to see things like -- INSERT -- anymore
 set nobackup                            " This is recommended by coc
 set nowritebackup                       " This is recommended by coc
-set updatetime=300                      " Faster completion
+set updatetime=50                       " Faster completion
 set timeoutlen=500                      " By default timeoutlen is 1000 ms
 set textwidth=80
 set autoindent                          " Good auto indent
@@ -42,6 +42,13 @@ set listchars=tab:=>,eol:$
 set virtualedit=onemore                 " Allow the cursor to move just past the end of the line
 set selection=exclusive
 
-:autocmd Filetype * setlocal formatoptions=cnrqjl " Overwrite ftplugin for formatoptions
+autocmd Filetype * setlocal formatoptions=cnrqjl " Overwrite ftplugin for formatoptions
 
+" trigger `autoread` when files changes on disk
+" and notification after file change
+set autoread
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if !bufexists("[Command Line]") && mode() != 'c' | checktime | endif
+autocmd FileChangedShellPost * echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
+" Set template view ejs files as normal html file for autocompletion
+autocmd BufNewFile,BufRead *.ejs set filetype=html

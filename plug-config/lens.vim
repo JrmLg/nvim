@@ -42,6 +42,6 @@ endfunction
 
 " autocmd WinEnter * call TestLens()
 
-nnoremap <silent><C-S-M> :call AutoResizeCurrentScreen()<CR>
+nnoremap <silent><C-M> :call AutoResizeCurrentScreen()<CR>
 
 

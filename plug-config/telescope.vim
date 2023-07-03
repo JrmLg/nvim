@@ -40,25 +40,26 @@ function TelescopeFindFilesDynamicPath(withConfigPath=0)
 endfunction
 
 
-nnoremap !f <cmd>call TelescopeFindFilesDynamicPath()<CR>
-nnoremap !ff <cmd>call TelescopeFindFilesDynamicPath(1)<CR>
-nnoremap !b <cmd>Telescope buffers<CR>
-nnoremap !l <cmd>Telescope current_buffer_fuzzy_find<CR>
-nnoremap !c <cmd>Telescope commands<CR>
-nnoremap !' <cmd>Telescope marks<CR>
-nnoremap !" <cmd>Telescope registers<CR>
-nnoremap !m <cmd>Telescope keymaps<CR>
-nnoremap !o <cmd>Telescope oldfiles<CR>
-nnoremap !h <cmd>Telescope help_tags<CR>
-nnoremap !/ <cmd>Telescope search_history<CR>
-nnoremap !: <cmd>Telescope command_history<CR>
+nnoremap <BS>f <cmd>call TelescopeFindFilesDynamicPath()<CR>
+nnoremap <BS>ff <cmd>call TelescopeFindFilesDynamicPath(1)<CR>
+nnoremap <BS>b <cmd>Telescope buffers<CR>
+nnoremap <BS>l <cmd>Telescope current_buffer_fuzzy_find<CR>
+nnoremap <BS>c <cmd>Telescope commands<CR>
+nnoremap <BS>' <cmd>Telescope marks<CR>
+nnoremap <BS>" <cmd>Telescope registers<CR>
+nnoremap <BS>m <cmd>Telescope keymaps<CR>
+nnoremap <BS>o <cmd>Telescope oldfiles<CR>
+nnoremap <BS>h <cmd>Telescope help_tags<CR>
+nnoremap <BS>/ <cmd>Telescope search_history<CR>
+nnoremap <BS>: <cmd>Telescope command_history<CR>
+nnoremap <BS>s <cmd>Telescope treesitter<CR>
 
-nnoremap !g <cmd>Telescope git_files<CR>
-nnoremap !gc <cmd>Telescope git_commits<CR>
-nnoremap !gb <cmd>Telescope git_bcommits<CR>
-nnoremap !gs <cmd>Telescope git_status<CR>
-nnoremap !gt <cmd>Telescope git_stash<CR>
-nnoremap !gb <cmd>Telescope git_branches<CR>
+nnoremap <BS>g <cmd>Telescope git_files<CR>
+nnoremap <BS>gc <cmd>Telescope git_commits<CR>
+nnoremap <BS>gb <cmd>Telescope git_bcommits<CR>
+nnoremap <BS>gs <cmd>Telescope git_status<CR>
+nnoremap <BS>gt <cmd>Telescope git_stash<CR>
+nnoremap <BS>gb <cmd>Telescope git_branches<CR>
 
-nnoremap !w <cmd>Telescope grep_string<CR>
-nnoremap !v <cmd>Telescope vim_options<CR>
+nnoremap <BS>w <cmd>Telescope grep_string<CR>
+nnoremap <BS>v <cmd>Telescope vim_options<CR>

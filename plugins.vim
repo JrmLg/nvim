@@ -20,8 +20,8 @@ call plug#begin('~/AppData/Local/nvim/autoload/plugged')
 " ---------------------------- Navigation helpers ----------------------------
     Plug 'mhinz/vim-startify'
     Plug 'easymotion/vim-easymotion'
+    Plug 'justinmk/vim-sneak'
     Plug 'romainl/vim-cool'
-    Plug 'max397574/better-escape.nvim'
     Plug 'camspiers/animate.vim'
     Plug 'camspiers/lens.vim'
     Plug 'inkarkat/vim-CursorLineCurrentWindow'

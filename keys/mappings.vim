@@ -5,24 +5,24 @@ nnoremap <Leader><Leader>c :w<CR>:source %<CR>
 nnoremap <Leader><Leader>l :w<CR>:luafile %<CR>
 
 " ----------------------- Better nav for omnicomplete ------------------------
-inoremap <expr> <C-j> ("\<C-n>")
-inoremap <expr> <C-k> ("\<C-p>")
+" inoremap <expr> <C-j> ("\<C-n>")
+" inoremap <expr> <C-k> ("\<C-p>")
 
 " --------------------------- Move in insert mode ----------------------------
-inoremap <M-l> <right>
-inoremap <M-h> <left>
-inoremap <M-j> <down>
-inoremap <M-k> <up>
-inoremap <M-H> <C-o>^
-inoremap <M-L> <C-o>$
+" inoremap <M-l> <right>
+" inoremap <M-h> <left>
+" inoremap <M-j> <down>
+" inoremap <M-k> <up>
+" inoremap <M-H> <C-o>^
+" inoremap <M-L> <C-o>$
 
 " ------------------------ Better command navigation -------------------------
-cnoremap <M-l> <right>
-cnoremap <M-h> <left>
-cnoremap <M-j> <down>
-cnoremap <M-k> <up>
-cnoremap <M-H> <C-o>^
-cnoremap <M-L> <C-o>$
+" cnoremap <M-l> <right>
+" cnoremap <M-h> <left>
+" cnoremap <M-j> <down>
+" cnoremap <M-k> <up>
+" cnoremap <M-H> <C-o>^
+" cnoremap <M-L> <C-o>$
 
 " ---------- Change normal key binding because of conflic with tab -----------
 nnoremap <C-p> <C-i>
@@ -38,10 +38,8 @@ nnoremap <silent> <Leader>tt :tab split<CR>
 nnoremap <silent> <Leader>tn :tabnew<CR>
 nnoremap <silent> <Leader>tc :tabclose<CR>
 
-" -------------------------- Alternate way to save ---------------------------
-nnoremap <C-s :w<CR>
 " ---------------------- Alternate way to save and quit ----------------------
-nnoremap <C-q> :w <bar> bd<CR>
+nnoremap <C-Q> :w <bar> bd<CR>
 " -------------- Alternate way to close buffer and keep window ---------------
 nnoremap <silent><C-c> :bp\|:bd #<CR>
 
@@ -82,11 +80,8 @@ nnoremap <silent><Leader>gd :Gitsigns toggle_deleted<CR>
 nnoremap <silent><Leader>gl :Gclog<CR>
 nnoremap <silent><Leader>gb :G blame<CR>
 
-" ---------------------- Use vv for escape visual mode -----------------------
-vnoremap vv <Esc> 
-
 " ----------------------------- Escape terminal ------------------------------
-tnoremap <Leader><TAB> <C-\><C-n>
+tnoremap <ESC> <C-\><C-n>
 
 " ------------- For compute math in insert mode and visual mode --------------
 inore <C-e> <ESC>:call SelectMathExpression()<CR>c<C-r>=<C-r>"<CR>
@@ -108,9 +103,9 @@ nnoremap <Leader>du :lua require('dapui').open()<CR>
 nnoremap <silent> <Leader><TAB> :CocCommand explorer<CR>
 
 " ----------------------------- Windows shortcut -----------------------------
-nnoremap <C-S> :update<CR>
-inoremap <C-S> :update<CR>
-vnoremap <C-S> :update<CR>
+nnoremap <C-S> :write<CR>
+inoremap <C-S> :write<CR>
+vnoremap <C-S> :write<CR>
 vnoremap <C-X> "+x
 vnoremap <C-C> "+y
 cnoremap <C-V> <C-R>*
@@ -119,9 +114,9 @@ inoremap <C-A> <ESC>ggvG
 vnoremap <C-A> <ESC>ggvG
 
 " -------------------------- Better code navigation --------------------------
-nnoremap ** *
-vnoremap ** *
-nnoremap <silent>* :let last_win_pos=winsaveview()<CR>:keepjumps normal! mi*`i<CR>:call winrestview(last_win_pos)<CR>
-vnoremap <silent>* :<C-w>let last_win_pos=winsaveview()<CR>:let @/=getline("'<")[getpos("'<")[2]-1:getpos("'>")[2]-1]<CR>:keepjumps normal! mi//`i<CR>:call winrestview(last_win_pos)<CR>:set hls<CR>
+" nnoremap ** *
+" vnoremap ** *
+" nnoremap <silent>* :let last_win_pos=winsaveview()<CR>:keepjumps normal! mi*`i<CR>:call winrestview(last_win_pos)<CR>
+" vnoremap <silent>* :<C-w>let last_win_pos=winsaveview()<CR>:let @/=getline("'<")[getpos("'<")[2]-1:getpos("'>")[2]-1]<CR>:keepjumps normal! mi//`i<CR>:call winrestview(last_win_pos)<CR>:set hls<CR>
 
 
