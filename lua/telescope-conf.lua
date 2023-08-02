@@ -3,6 +3,10 @@
 
 require('telescope').setup {
     defaults = {
+        file_ignore_patterns = {
+            "node_modules",
+        },
+
         mappings = {
             i = {
                 -- See :h telescope.actions

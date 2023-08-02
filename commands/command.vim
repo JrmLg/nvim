@@ -13,4 +13,5 @@ command ConfPlugins :exe "call OpenCocExplorerWithoutAnimation('" . stdpath('con
 command ConfPluginsAdd :exe 'edit' stdpath('config').'/plugins.vim'
 command ConfSettings :exe 'edit' stdpath('config').'/general/settings.vim'
 
-command OpenGithubPlug normal "wyi':!start "" https://github.com/<C-r>w<CR>
+command OpenGithubPlug normal ^"wyi':!start "" https://github.com/<C-r>w<CR>
+command OpenAlacritty exe OpenAlacritty()

@@ -4,8 +4,8 @@
     "explorer.contentWidth": 40,
     "explorer.icon.enableNerdfont": true,
     "explorer.quitOnOpen": true,
-    "coc.preferences.formatOnType": true,
-    "coc.preferences.formatOnSave": true,
     "explorer.file.showHiddenFiles": true,
     "snippets.ultisnips.pythonPrompt": false,
+    "coc.preferences.formatOnSave": true,
+    "html.format.templating": true
 }

@@ -110,8 +110,10 @@ vnoremap <C-X> "+x
 vnoremap <C-C> "+y
 cnoremap <C-V> <C-R>*
 inoremap <C-V> <C-R>*
-inoremap <C-A> <ESC>ggvG
-vnoremap <C-A> <ESC>ggvG
+inoremap <C-A> <ESC>ggVG
+vnoremap <C-A> <ESC>ggVG
+inoremap <C-BS> <C-w>
+inoremap <C-DEL> <ESC>lcw
 
 " -------------------------- Better code navigation --------------------------
 " nnoremap ** *
@@ -120,3 +122,5 @@ vnoremap <C-A> <ESC>ggvG
 " vnoremap <silent>* :<C-w>let last_win_pos=winsaveview()<CR>:let @/=getline("'<")[getpos("'<")[2]-1:getpos("'>")[2]-1]<CR>:keepjumps normal! mi//`i<CR>:call winrestview(last_win_pos)<CR>:set hls<CR>
 
 
+" ---------------- Quickly launch a macro on the last search -----------------
+vnoremap <Leader>q :g//norm @

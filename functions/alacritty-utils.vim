@@ -58,3 +58,14 @@ function AlacrittyDecreaseOpacity(step=0.05)
         call AlacrittySetOpacityValue(newValue)
     endif
 endfunction
+
+function OpenAlacritty(path="")
+    let path = a:path
+    if path == ""
+        let path = getcwd()
+    endif
+
+    exe "!start alacritty --working-directory " . path
+endfunction
+
+nnoremap <silent> <BS>a :call OpenAlacritty()<CR><ESC>
