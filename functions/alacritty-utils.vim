@@ -61,8 +61,16 @@ endfunction
 
 function OpenAlacritty(path="")
     let path = a:path
+
     if path == ""
-        let path = getcwd()
+        if &filetype == "coc-explorer"
+            normal yp
+            sleep 10m
+            let reg = getreg('"')
+            let path = fnamemodify(reg, ':p:h')
+        else
+            let path = getcwd()
+        endif
     endif
 
     exe "!start alacritty --working-directory " . path

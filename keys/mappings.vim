@@ -113,7 +113,9 @@ inoremap <C-V> <C-R>*
 inoremap <C-A> <ESC>ggVG
 vnoremap <C-A> <ESC>ggVG
 inoremap <C-BS> <C-w>
-inoremap <C-DEL> <ESC>lcw
+cnoremap <C-BS> <C-w>
+inoremap <C-DEL> <C-RIGHT><C-w>
+cnoremap <C-DEL> <C-RIGHT><C-w><BS>
 
 " -------------------------- Better code navigation --------------------------
 " nnoremap ** *
