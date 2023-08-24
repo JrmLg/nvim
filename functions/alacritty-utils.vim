@@ -65,7 +65,7 @@ function OpenAlacritty(path="")
     if path == ""
         if &filetype == "coc-explorer"
             normal yp
-            sleep 10m
+            sleep 30m
             let reg = getreg('"')
             let path = fnamemodify(reg, ':p:h')
         else

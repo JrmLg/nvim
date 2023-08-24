@@ -1,22 +1,21 @@
 call plug#begin('~/AppData/Local/nvim/autoload/plugged')
 
 " ------------------------- Themes and visual aspect -------------------------
-    Plug 'joshdick/onedark.vim'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
+    Plug 'nvim-tree/nvim-web-devicons'
+    Plug 'nvim-lualine/lualine.nvim'
+    Plug 'akinsho/bufferline.nvim'
+    Plug 'folke/tokyonight.nvim'
     Plug 'ap/vim-css-color'
     Plug 'equalsraf/neovim-gui-shim'
-    Plug 'neoclide/vim-jsx-improve'
-    " Plug 'leafgarland/typescript-vim'
-    " Plug 'peitalin/vim-jsx-typescript'
 
-" -------------------------- Help with translation ---------------------------
+" ---------------------------- Help and utilities ----------------------------
     Plug 'uga-rosa/translate.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'neoclide/vim-jsx-improve'
     
 " ----------------------------- Code completion ------------------------------
     Plug 'windwp/nvim-autopairs'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 

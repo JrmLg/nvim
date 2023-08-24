@@ -5,8 +5,7 @@ source ~/AppData/Local/nvim/plugins.vim
 source ~/AppData/Local/nvim/general/settings.vim
 
 " ---------------------------------- Themes ----------------------------------
-source ~/AppData/Local/nvim/themes/onedark.vim
-source ~/AppData/Local/nvim/themes/airline.vim
+source ~/AppData/Local/nvim/themes/tokyonight.vim
 
 " -------------------------------- Functions ---------------------------------
 for f in split(glob('~/AppData/Local/nvim/functions/*.vim'), '\n')
