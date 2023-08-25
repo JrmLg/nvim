@@ -1,6 +1,6 @@
 function NormalizePath(path)
-    let path = substitute(a:path, '/', '\', 'g')
-    return escape(path, '\')
+    let path = substitute(a:path, '\', '/', 'g')
+    return path
 endfunction
 
 function FirstPathContainsSecond(first, second)
@@ -82,6 +82,7 @@ function GetDynamicPath(withConfigPath=0)
 endfunction
 
 function TelescopeFindFilesDynamicPath(withConfigPath=0)
+    echo GetDynamicPath(a:withConfigPath)
     execute "lua require('telescope.builtin').find_files({search_dirs = {" . GetDynamicPath(a:withConfigPath) . "}})"
 endfunction
 
@@ -90,7 +91,7 @@ function TelescopeLiveGrepConfigPath()
     execute "lua require('telescope.builtin').live_grep({search_dirs = {" . configPath . "}})"
 endfunction
 
-nnoremap <BS>f <cmd>call TelescopeFindFilesDynamicPath()<CR>
+nnoremap <BS>f <cmd>Telescope find_files<CR>
 nnoremap <BS>ff <cmd>call TelescopeFindFilesDynamicPath(1)<CR>
 nnoremap <BS>b <cmd>Telescope buffers<CR>
 nnoremap <BS>l <cmd>Telescope current_buffer_fuzzy_find<CR>

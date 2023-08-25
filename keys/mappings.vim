@@ -104,12 +104,12 @@ nnoremap <silent> <Leader><TAB> :CocCommand explorer<CR>
 
 " ----------------------------- Windows shortcut -----------------------------
 nnoremap <C-S> :write<CR>
-inoremap <C-S> :write<CR>
+inoremap <C-S> <ESC>:write<CR>a
 vnoremap <C-S> :write<CR>
 vnoremap <C-X> "+x
 vnoremap <C-C> "+y
 cnoremap <C-V> <C-R>*
-inoremap <C-V> <C-R>*
+inoremap <silent><C-V> <ESC>l:set paste<CR>"*gP:set nopaste<CR>i
 inoremap <C-A> <ESC>ggVG
 vnoremap <C-A> <ESC>ggVG
 inoremap <C-BS> <C-w>
