@@ -1,10 +1,11 @@
 -- You dont need to set any of these options. These are the default ones. Only
 -- the loading is important
 
+local actions = require("telescope.actions")
 require('telescope').setup {
     defaults = {
         file_ignore_patterns = {
-            "node_modules",
+            -- "node_modules",
         },
 
         mappings = {
@@ -13,6 +14,8 @@ require('telescope').setup {
                 ["<C-k>"] = "move_selection_previous",
                 ["<C-j>"] = "move_selection_next",
                 ["<ESC>"] = "close",
+                ["<C-c>"] = actions.delete_buffer + actions.move_to_top,
+
             }
         },
 

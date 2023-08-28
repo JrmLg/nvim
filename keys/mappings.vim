@@ -109,7 +109,7 @@ vnoremap <C-S> :write<CR>
 vnoremap <C-X> "+x
 vnoremap <C-C> "+y
 cnoremap <C-V> <C-R>*
-inoremap <silent><C-V> <ESC>l:set paste<CR>"*gP:set nopaste<CR>i
+inoremap <silent><C-V> <ESC>:set paste<CR>"*p:set nopaste<CR>a
 inoremap <C-A> <ESC>ggVG
 vnoremap <C-A> <ESC>ggVG
 inoremap <C-BS> <C-w>
