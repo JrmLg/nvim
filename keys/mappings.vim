@@ -117,6 +117,15 @@ cnoremap <C-BS> <C-w>
 inoremap <C-DEL> <C-RIGHT><C-w>
 cnoremap <C-DEL> <C-RIGHT><C-w><BS>
 
+" --------------------------- Navigate in quickfix ---------------------------
+nnoremap <silent>ç :copen<CR>:cnext<CR>
+nnoremap <silent>_ :copen<CR>:cprev<CR>
+nnoremap <silent><BS>ç :cprevious<CR>
+nnoremap <silent><BS>_ :cnewer<CR>
+nnoremap <silent><BS><ESC> :cclose<CR>
+
+
+
 " -------------------------- Better code navigation --------------------------
 " nnoremap ** *
 " vnoremap ** *

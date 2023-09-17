@@ -1,12 +1,14 @@
 {
-    "explorer.width": 40,
+    "explorer.width": 50,
     "explorer.toggle": true,
-    "explorer.contentWidth": 40,
+    "explorer.contentWidth": 50,
     "explorer.icon.enableNerdfont": true,
     "explorer.quitOnOpen": true,
     "explorer.file.showHiddenFiles": true,
     "snippets.ultisnips.pythonPrompt": false,
     "coc.preferences.formatOnSave": true,
     "html.format.templating": true,
-    "javascript.suggest.completeJSDocs": true
+    "javascript.suggest.completeJSDocs": true,
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true
 }

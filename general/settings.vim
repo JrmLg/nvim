@@ -29,7 +29,7 @@ set showtabline=2                       " Always show tabs
 set noshowmode                          " We don't need to see things like -- INSERT -- anymore
 set nobackup                            " This is recommended by coc
 set nowritebackup                       " This is recommended by coc
-set updatetime=50                       " Faster completion
+set updatetime=300                      " Faster completion
 set timeoutlen=500                      " By default timeoutlen is 1000 ms
 set textwidth=80
 set autoindent                          " Good auto indent
@@ -37,11 +37,13 @@ set formatoptions=cnrqjl                " Stop newline continution of comments
 set scrolloff=6                         " Minimal number of screen lines to keep above and below the cursor.
 set incsearch                           " While typing a search command, show where the pattern, as it was typed so far, matches.
 set foldmethod=indent                   " more indent means a higher fold level
-set foldlevel=5
+set foldlevel=9
 set listchars=tab:=>,eol:$
 set virtualedit=onemore                 " Allow the cursor to move just past the end of the line
 set selection=inclusive
 
+
+autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 autocmd Filetype * setlocal formatoptions=cnrqjl " Overwrite ftplugin for formatoptions
 
 " trigger `autoread` when files changes on disk
