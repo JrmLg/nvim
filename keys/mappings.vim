@@ -4,26 +4,6 @@ nnoremap <Leader><Leader>r :source $MYVIMRC<CR>
 nnoremap <Leader><Leader>c :w<CR>:source %<CR>
 nnoremap <Leader><Leader>l :w<CR>:luafile %<CR>
 
-" ----------------------- Better nav for omnicomplete ------------------------
-" inoremap <expr> <C-j> ("\<C-n>")
-" inoremap <expr> <C-k> ("\<C-p>")
-
-" --------------------------- Move in insert mode ----------------------------
-" inoremap <M-l> <right>
-" inoremap <M-h> <left>
-" inoremap <M-j> <down>
-" inoremap <M-k> <up>
-" inoremap <M-H> <C-o>^
-" inoremap <M-L> <C-o>$
-
-" ------------------------ Better command navigation -------------------------
-" cnoremap <M-l> <right>
-" cnoremap <M-h> <left>
-" cnoremap <M-j> <down>
-" cnoremap <M-k> <up>
-" cnoremap <M-H> <C-o>^
-" cnoremap <M-L> <C-o>$
-
 " ---------- Change normal key binding because of conflic with tab -----------
 nnoremap <C-p> <C-i>
 
@@ -32,9 +12,9 @@ nnoremap <silent><S-TAB> :bprev<CR>
 nnoremap <silent><TAB> :bnext<CR>
 
 " -------------------------- Switching between tabs --------------------------
-nnoremap <silent> <Leader>th :tabprevious<CR>
-nnoremap <silent> <Leader>tl :tabnext<CR>
-nnoremap <silent> <Leader>tt :tab split<CR>
+nnoremap <silent> <C-TAB> :tabnext<CR>
+nnoremap <silent> <C-S-TAB> :tabprevious<CR>
+nnoremap <silent> <Leader>tt <C-w>s<C-w>T
 nnoremap <silent> <Leader>tn :tabnew<CR>
 nnoremap <silent> <Leader>tc :tabclose<CR>
 
@@ -66,7 +46,7 @@ nnoremap <silent><C-k>    :resize -2<CR>
 nnoremap <silent><C-l>    :vertical resize +2<CR>
 
 " ------------------------- Better window splitting --------------------------
-nnoremap <silent><Leader>v :vsplit<CR>
+nnoremap <silent><Leader>i :vsplit<CR>
 nnoremap <silent><Leader>h :split<CR>
 
 " -------------------------- Better git navigation ---------------------------
@@ -103,9 +83,9 @@ nnoremap <Leader>du :lua require('dapui').open()<CR>
 nnoremap <silent> <Leader><TAB> :CocCommand explorer<CR>
 
 " ----------------------------- Windows shortcut -----------------------------
-nnoremap <C-S> :write<CR>
-inoremap <C-S> <ESC>:write<CR>a
-vnoremap <C-S> :write<CR>
+nnoremap <silent><C-S> :write<CR>
+inoremap <silent><C-S> <ESC>:write<CR>a
+vnoremap <silent><C-S> :write<CR>
 vnoremap <C-X> "+x
 vnoremap <C-C> "+y
 cnoremap <C-V> <C-R>*
@@ -133,5 +113,6 @@ nnoremap <silent><BS><ESC> :cclose<CR>
 " vnoremap <silent>* :<C-w>let last_win_pos=winsaveview()<CR>:let @/=getline("'<")[getpos("'<")[2]-1:getpos("'>")[2]-1]<CR>:keepjumps normal! mi//`i<CR>:call winrestview(last_win_pos)<CR>:set hls<CR>
 
 
-" ---------------- Quickly launch a macro on the last search -----------------
+" -------------------------- Quickly launch a macro --------------------------
 vnoremap <Leader>q :g//norm @
+vnoremap <Leader>a :norm @

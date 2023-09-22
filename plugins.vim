@@ -46,5 +46,7 @@ call plug#begin('~/AppData/Local/nvim/autoload/plugged')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'theHamsta/nvim-dap-virtual-text'
     Plug 'mfussenegger/nvim-dap-python'
+    Plug 'mxsdev/nvim-dap-vscode-js'
+    Plug 'microsoft/vscode-js-debug'
 
 call plug#end()

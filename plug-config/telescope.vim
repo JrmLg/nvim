@@ -93,7 +93,7 @@ endfunction
 
 nnoremap <BS>f <cmd>Telescope find_files<CR>
 nnoremap <BS>ff <cmd>call TelescopeFindFilesDynamicPath(1)<CR>
-nnoremap <BS>b <cmd>Telescope buffers<CR>
+nnoremap <BS><TAB> <cmd>Telescope buffers<CR>
 nnoremap <BS>l <cmd>Telescope current_buffer_fuzzy_find<CR>
 nnoremap <BS>ll <cmd>Telescope live_grep<CR>
 nnoremap <BS>lc <cmd>call TelescopeLiveGrepConfigPath()<CR>

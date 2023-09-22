@@ -54,3 +54,4 @@ Create Directory bookmarks (optional):
              \ {'shortcut': 'path'},
              \ {'shortcut': 'path'},
              \]
+

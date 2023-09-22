@@ -28,18 +28,31 @@ function telescope_custom_actions.multi_selection_open(prompt_bufnr)
     telescope_custom_actions._multiopen(prompt_bufnr, "edit")
 end
 
+local transform_mod = require('telescope.actions.mt').transform_mod
+
+-- or create your custom action
+local my_cool_custom_action = transform_mod({
+  x = function()
+    print("This function ran after another action. Prompt_bufnr: " )
+    -- Enter your function logic here. You can take inspiration from lua/telescope/actions.lua
+  end,
+})
+
 require('telescope').setup {
     defaults = {
         file_ignore_patterns = {
             -- "node_modules",
         },
 
+
         mappings = {
             i = {
                 -- See :h telescope.actions
                 ["<C-k>"] = "move_selection_previous",
                 ["<C-j>"] = "move_selection_next",
+                ["<C-i>"] = "file_vsplit",
                 ["<ESC>"] = "close",
+                ["<C-BS>"] = {"<C-u>", type = "command"},
                 ["<C-c>"] = actions.delete_buffer + actions.move_to_top,
             }
         },
