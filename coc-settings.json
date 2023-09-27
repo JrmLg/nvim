@@ -4,7 +4,7 @@
     "explorer.contentWidth": 50,
     "explorer.icon.enableNerdfont": true,
     "explorer.quitOnOpen": true,
-    "explorer.file.showHiddenFiles": false,
+    "explorer.file.showHiddenFiles": true,
     "explorer.file.hiddenRules": {
         "extensions": [
             "o",

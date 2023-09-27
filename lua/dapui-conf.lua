@@ -7,6 +7,7 @@ dap.listeners.after.event_initialized["dapui_config"] = function()
 end
 
 dap.listeners.after.event_terminated["dapui_config"] = function() 
+    local test = vim.fn.input('Type enter to Exit')
     dapui.close()
 end
 
