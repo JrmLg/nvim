@@ -44,6 +44,10 @@ Open nvim-qt and run command:
 
 - PlugInstall
 
+Enable my scripts js
+
+- Go to nvim\scripts folder in cmdline and run 'npm install'
+
 Create Directory bookmarks (optional):
 
 - Add file bookmarks.vim

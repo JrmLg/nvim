@@ -29,4 +29,4 @@ function WindowMaximizedToogle()
 
 endfunction
 
-noremap <M-Enter> :call WindowMaximizedToogle()<CR>
+" noremap <M-Enter> :call WindowMaximizedToogle()<CR>

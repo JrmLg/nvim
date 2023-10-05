@@ -1,11 +1,8 @@
 " ----------------------------- Add all plugins ------------------------------
 source ~/AppData/Local/nvim/plugins.vim
 
-" --------------------------------- Settings --------------------------------- 
+" --------------------------------- Settings ---------------------------------
 source ~/AppData/Local/nvim/general/settings.vim
-
-" ---------------------------------- Themes ----------------------------------
-source ~/AppData/Local/nvim/themes/tokyonight.vim
 
 " -------------------------------- Functions ---------------------------------
 for f in split(glob('~/AppData/Local/nvim/functions/*.vim'), '\n')
@@ -13,7 +10,7 @@ for f in split(glob('~/AppData/Local/nvim/functions/*.vim'), '\n')
 endfor
 
 " ------------------------ Configuration lua plugins -------------------------
-for file in split(glob(stdpath('config') . '/lua/*.lua'), '\n')
+for file in split(glob(stdpath('config') . '/lua/*'), '\n')
     let filename = fnamemodify(file, ':t:r')
     execute "lua require('" . filename . "')"
 endfor
@@ -29,3 +26,5 @@ source ~/AppData/Local/nvim/commands/command.vim
 " -------------------------------- My mapping --------------------------------
 source ~/AppData/Local/nvim/keys/mappings.vim
 
+" --------------------------------- Scripts ----------------------------------
+source ~/AppData/Local/nvim/scripts/run-script.vim

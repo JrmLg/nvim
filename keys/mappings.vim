@@ -46,14 +46,14 @@ nnoremap <silent><C-k>    :resize -2<CR>
 nnoremap <silent><C-l>    :vertical resize +2<CR>
 
 " ------------------------- Better window splitting --------------------------
-nnoremap <silent><Leader>i :vsplit<CR>
-nnoremap <silent><Leader>h :split<CR>
+nmap <silent><Leader>i :vsplit<CR>
+nmap <silent><Leader>h :split<CR>
 
 " -------------------------- Better git navigation ---------------------------
-nnoremap <silent><Leader>gg :Git<CR>
+nnoremap <silent><Leader>gg :vertical Git<CR>
 nnoremap <silent><Leader>g :Gitsigns preview_hunk_inline<CR>
-nnoremap <silent><Leader>gj :Gitsigns next_hunk<CR>
-nnoremap <silent><Leader>gk :Gitsigns prev_hunk<CR>
+nnoremap <silent>) :Gitsigns next_hunk<CR>
+nnoremap <silent>( :Gitsigns prev_hunk<CR>
 nnoremap <silent><Leader>gr :Gitsigns reset_hunk<CR>
 nnoremap <silent><Leader>gR :Gitsigns reset_buffer<CR>
 nnoremap <silent><Leader>gd :Gitsigns toggle_deleted<CR>
@@ -79,8 +79,8 @@ nnoremap <expr> <Leader>dm ":lua require('dap').set_breakpoint(nil, nil, \"" . i
 nnoremap <Leader>dr :lua require('dap').repl.open()<CR>
 nnoremap <Leader>du :lua require('dapui').open()<CR>
 
-" ------------------------- Mapping for coc explorer -------------------------
-nnoremap <silent> <Leader><TAB> :CocCommand explorer<CR>
+" ------------------------ Mapping for file explorer -------------------------
+nnoremap <silent> <Leader><TAB> :Neotree toggle reveal_force_cwd<cr>
 
 " ----------------------------- Windows shortcut -----------------------------
 nnoremap <silent><C-S> :write<CR>
@@ -103,15 +103,6 @@ nnoremap <silent>_ :copen<CR>:cprev<CR>
 nnoremap <silent><BS>ç :cprevious<CR>
 nnoremap <silent><BS>_ :cnewer<CR>
 nnoremap <silent><BS><ESC> :cclose<CR>
-
-
-
-" -------------------------- Better code navigation --------------------------
-" nnoremap ** *
-" vnoremap ** *
-" nnoremap <silent>* :let last_win_pos=winsaveview()<CR>:keepjumps normal! mi*`i<CR>:call winrestview(last_win_pos)<CR>
-" vnoremap <silent>* :<C-w>let last_win_pos=winsaveview()<CR>:let @/=getline("'<")[getpos("'<")[2]-1:getpos("'>")[2]-1]<CR>:keepjumps normal! mi//`i<CR>:call winrestview(last_win_pos)<CR>:set hls<CR>
-
 
 " -------------------------- Quickly launch a macro --------------------------
 vnoremap <Leader>q :g//norm @

@@ -59,21 +59,21 @@ function AlacrittyDecreaseOpacity(step=0.05)
     endif
 endfunction
 
-function OpenAlacritty(path="")
+function OpenCmdLine(path="")
     let path = a:path
 
     if path == ""
-        if &filetype == "coc-explorer"
+        if &filetype == "coc-explorer" || &filetype == "NvimTree"
             normal yp
             sleep 30m
-            let reg = getreg('"')
-            let path = fnamemodify(reg, ':p:h')
+            let path = getreg('"')
         else
             let path = getcwd()
         endif
     endif
 
-    exe "!start alacritty --working-directory " . path
+    let path = fnamemodify(path, ':p:h')
+    silent exe  "!start alacritty --working-directory " . path
 endfunction
 
-nnoremap <silent> <BS>a :call OpenAlacritty()<CR><ESC>
+nnoremap <silent> <BS>a :call OpenCmdLine()<CR><ESC>

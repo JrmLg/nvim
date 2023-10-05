@@ -12,7 +12,11 @@ function! SaveLastReg()
     endif
 endfunction 
 
-:autocmd TextYankPost * call SaveLastReg()
+function IncrementRegisters()
+    for i in range(8,0,-1)
+        exe "let @".string(i+1)." = @". string(i) 
+    endfor
+endfunction
 
 function ClearRegisters(regs='-*+/=1234567890abcdefghijklmnopqrstuvwx')
     let regs = split(a:regs, '\zs')
@@ -20,6 +24,17 @@ function ClearRegisters(regs='-*+/=1234567890abcdefghijklmnopqrstuvwx')
         call setreg(r, [])
     endfor
 endfunction
+
+function AppendRegister(value, withClipboard=1)
+    call IncrementRegisters()
+    call setreg('"', a:value)
+    if a:withClipboard 
+        call setreg('*', a:value)
+    endif
+    let g:last_yank = a:value
+endfunction
+
+:autocmd TextYankPost * call SaveLastReg()
 
 command ClearRegistersAlpha :call ClearRegisters('abcdefghijklmnopqrstuvwxz')
 command ClearRegistersNum :call ClearRegisters('1234567890')

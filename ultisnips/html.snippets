@@ -1,0 +1,136 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet html5 "Structure d'une page par défaut" i
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Titre de la page</title>
+<meta lang="fr">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+</body>
+
+</html>
+endsnippet
+
+
+priority 3
+snippet "img(\s+\d+)?(\s+\d+)?" "Insert une image de taille variable en placeholder" ri
+`!p
+width = "600" if match.group(1) is None else match.group(1)
+height = "400" if match.group(2) is None else match.group(2)
+width = width.strip()
+height = height.strip()
+snip.rv = f'<img src="https://placehold.co/{width}x{height}" alt="">'
+`
+${3:${VISUAL}}
+endsnippet
+
+snippet script "Insert une balise script pour ajouter du javascript par défaut." b
+<script src="${1}.js" type="module" defer></script>
+endsnippet
+
+
+priority 2
+snippet "((\d+)?\s*([a-zA-Z]*)\s*)((\.\s*([a-zA-Z0-9-_\s]+))|(#\s*([a-zA-Z0-9-_\s]+))|(,\s*((\d+)?\s*lorem)?.*))+" "Insert une balise avec (class, id, contenue) ." ri
+`!p
+import lorem
+
+full_tag = match.group(3)
+have_tag = False
+simple_attr = ""
+if full_tag is not None and len(full_tag):
+		tag_list = full_tag.strip().split()
+		tag = tag_list[0]
+		have_tag = True
+		if len(tag_list) > 1:
+				simple_attr = ' ' + ''.join(tag_list[1:])
+else:
+		tag = 'div'
+
+have_multiplier = match.group(2)is not None
+multiplier = int(match.group(2)) if have_multiplier else 1
+
+def format_attr(attr):
+		if attr is not None:
+				a_type = {'.': 'class', '#': 'id'}[attr[0]]
+				attr = attr[1:] # Escape selector char like . or #
+				attr = " ".join(attr.split()) # Remove extra spaces
+				attr = f' {a_type}="{attr}"'
+				return True, attr 
+		return False, ""
+		
+have_cls, cls = format_attr(match.group(5))
+have_id, _id = format_attr(match.group(7))
+
+content = match.group(9)
+have_content = content is not None
+content = content[1:] if have_content else ""
+content = content.strip()
+
+lorem_match = match.group(10)
+lorem_qty = match.group(11)
+have_lorem = lorem_match is not None
+have_lorem_qty = lorem_qty is not None
+lorem_qty = int(lorem_qty) if have_lorem_qty else 1
+
+
+start_tag = f"<{tag}{simple_attr}{cls}{_id}>"
+end_tag = f"</{tag}>"
+
+result = []
+for i in range(multiplier):
+		line = []
+		line.append(start_tag)
+		if have_lorem:
+				lorem_content = ''.join([lorem.sentence() for _ in range(lorem_qty)])
+				line.append(content.replace(lorem_match, lorem_content, 1))
+		else:
+				line.append(content)
+				
+		if have_multiplier:
+				line.append(end_tag)
+		result.append(''.join(line))
+
+if not snip.c:
+		snip.rv = '\n'.join(result) if have_multiplier else result[0]
+`$1`!p 
+if not have_multiplier:
+		if not snip.c:
+				snip.rv=end_tag
+`
+endsnippet
+

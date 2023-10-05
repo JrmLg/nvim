@@ -35,23 +35,9 @@ let g:ascii = [
 
 let g:startify_custom_header = g:ascii + startify#fortune#boxed()
 
-" function CloseCocExplorer()
-"     let buffers = nvim_list_bufs()
-"     for b in buffers
-"         let is_loaded = nvim_buf_is_loaded(b)
-
-"         if is_loaded
-"             let b_filetype = getbufvar(b, '&filetype')
-"             if b_filetype == "coc-explorer"
-"                 execute "bd!" . b
-"             endif
-"         endif
-"     endfor
-" endfunction
-
 let g:filtename_to_close = []
-let g:buftype_to_close = ['help']
-let g:filtetype_to_close = ['coc-explorer', 'fugitiveblame']
+let g:buftype_to_close = ['help', 'nofile', 'terminal', 'quickfix', 'prompt', 'popup', 'preview']
+let g:filtetype_to_close = ['coc-explorer', 'fugitiveblame', 'NvimTree', 'neo-tree']
 
 function BeforeStartifySave()
     execute "wa!"

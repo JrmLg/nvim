@@ -2,6 +2,7 @@
 let g:mapleader = "\<Space>"
 let g:netrw_fastbrowse = 0              " Close VimExplorer after selecting file
 
+colorscheme tokyonight-storm
 syntax enable                           " Enables syntax highlighing
 set hidden                              " Required to keep multiple buffers open multiple buffers
 set nowrap                              " Display long lines as just one line
@@ -41,6 +42,8 @@ set foldlevel=9
 set listchars=tab:=>,eol:$
 set virtualedit=onemore                 " Allow the cursor to move just past the end of the line
 set selection=inclusive
+set signcolumn=yes
+" set matchpairs=(:),{:},[:]
 
 
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
