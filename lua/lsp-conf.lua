@@ -1,7 +1,7 @@
 require("mason").setup()
 
 require("mason-lspconfig").setup({
-    ensure_installed = { "lua_ls", "tsserver", "vim-language-server", "jsonls" },
+    ensure_installed = { "lua_ls", "tsserver", "vimls", "jsonls" },
     automatic_installation = true,
 })
 
