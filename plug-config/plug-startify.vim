@@ -56,9 +56,9 @@ function BeforeStartifySave()
     endfor
 endfunction
 
-" If startify open a directory, coc-explorer is open instead of netrw
-augroup MyCocExplorer
+" If startify open a directory, file explorer is open instead of netrw
+augroup MyFileExplorer
   autocmd!
   autocmd VimEnter * sil! au! FileExplorer *
-  autocmd BufEnter * let d = expand('%') | if isdirectory(d) | silent! bd | exe 'CocCommand explorer ' . d | endif
+  autocmd BufEnter * let d = expand('%') | if isdirectory(d) | silent! bd | exe 'Neotree left dir=' . d | endif
 augroup END
