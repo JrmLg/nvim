@@ -5,8 +5,8 @@ endfunction
 
 function FirstPathContainsSecond(first, second)
     if stridx(a:second, a:first) != -1
-        return 1 
-    else 
+        return 1
+    else
         return 0
     endif
 endfunction
@@ -55,27 +55,20 @@ function GetDynamicPath(withConfigPath=0)
         let currentFilePath = expand('%:p:h:h')
     endif
 
-    if stridx(workingDir, configPath) == -1
-        if a:withConfigPath
-            let search_dirs = MergePaths(search_dirs, configPath)
-        endif
+    if a:withConfigPath
+        let search_dirs = MergePaths(search_dirs, configPath)
     endif
 
-    if currentFilePath != workingDir
-        if stridx(workingDir, currentFilePath) == -1
-            if !a:withConfigPath || stridx(workingDir, configPath) == -1 
-                let search_dirs = MergePaths(search_dirs, workingDir)
-            endif
+    if !a:withConfigPath || stridx(workingDir, configPath) == -1
+        let search_dirs = MergePaths(search_dirs, workingDir)
+    endif
+
+    if stridx(currentFilePath, workingDir) == -1
+        if !a:withConfigPath || stridx(currentFilePath, configPath) == -1
+            let search_dirs = MergePaths(search_dirs, currentFilePath)
         endif
-        
-        if stridx(currentFilePath, workingDir) == -1
-            if !a:withConfigPath || stridx(currentFilePath, configPath) == -1
-                let search_dirs = MergePaths(search_dirs, currentFilePath)
-            endif
-        endif
-    else
-        let search_dirs = MergePaths(search_dirs, currentFilePath)
-   endif
+    endif
+    let search_dirs = MergePaths(search_dirs, currentFilePath)
 
     call map(search_dirs, {pos, val -> '"' . val . '"'})
     return join(search_dirs, ', ')

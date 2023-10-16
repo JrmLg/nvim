@@ -1,30 +1,30 @@
 " ----------------------------- Add all plugins ------------------------------
-source ~/AppData/Local/nvim/plugins.vim
+exe 'source' .. stdpath('config') .. '/plugins.vim'
 
 " --------------------------------- Settings ---------------------------------
-source ~/AppData/Local/nvim/general/settings.vim
+exe 'source' .. stdpath('config') .. '/general/settings.vim'
 
 " -------------------------------- Functions ---------------------------------
-for f in split(glob('~/AppData/Local/nvim/functions/*.vim'), '\n')
+for f in split(glob(stdpath('config') .. '/functions/*.vim'), '\n')
     exe 'source' f
 endfor
 
 " ------------------------ Configuration lua plugins -------------------------
-for file in split(glob(stdpath('config') . '/lua/*'), '\n')
+for file in split(glob(stdpath('config') .. '/lua/*'), '\n')
     let filename = fnamemodify(file, ':t:r')
     execute "lua require('" . filename . "')"
 endfor
 
 " -------------------------- Configuration plugins ---------------------------
-for f in split(glob('~/AppData/Local/nvim/plug-config/*.vim'), '\n')
+for f in split(glob(stdpath('config') .. '/plug-config/*.vim'), '\n')
     exe 'source' f
 endfor
 
 " --------------------------------- Commands ---------------------------------
-source ~/AppData/Local/nvim/commands/command.vim
+exe 'source' .. stdpath('config') .. '/commands/command.vim'
 
 " -------------------------------- My mapping --------------------------------
-source ~/AppData/Local/nvim/keys/mappings.vim
+exe 'source' .. stdpath('config') .. '/keys/mappings.vim'
 
 " --------------------------------- Scripts ----------------------------------
-source ~/AppData/Local/nvim/scripts/run-script.vim
+exe 'source' .. stdpath('config') .. '/scripts/run-script.vim'

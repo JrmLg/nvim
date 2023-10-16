@@ -1,6 +1,6 @@
 let g:startify_fortune_use_unicode = 1
 
-let g:startify_session_dir = "~/AppData/Local/nvim/sessions"
+let g:startify_session_dir = stdpath('config') .. '/sessions'
 let g:startify_session_before_save = ['call BeforeStartifySave()']
 
 let g:startify_lists = [
@@ -15,13 +15,10 @@ let g:startify_lists = [
 " \ { 'type': 'commands',  'header': ['   Commands']       },
 
 let g:startify_bookmarks = []
-call SourceIfExists('~/AppData/Local/nvim/bookmarks/bookmarks.vim')
+call SourceIfExists(stdpath('config') .. '/bookmarks/bookmarks.vim')
 let g:startify_bookmarks = extend(g:startify_bookmarks, [
-      \ {'nvim': '~/AppData/Local/nvim'},
-      \ {'vim': '~/AppData/Local/nvim'},
-      \ {'app': '~/AppData'},
-      \ {'coc': '~/AppData/Local/coc'},
-      \ {'ala': '~/AppData/Roaming/alacritty'},
+      \ {'nvim': stdpath('config')},
+      \ {'vim': stdpath('config')},
       \ ])
 
 " https://patorjk.com/software/taag/#p=display&v=0&f=Ogre&t=NeoVim

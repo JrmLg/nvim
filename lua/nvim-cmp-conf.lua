@@ -1,13 +1,13 @@
 local cmp = require('cmp')
 local types = require('cmp.types')
 
-require("cmp_nvim_ultisnips").setup({})
+require('cmp_nvim_ultisnips').setup({})
 
 
 -- Snippets setup
 vim.g.UltiSnipsSnippetDirectories = {
-    vim.fn.stdpath("config") .. "\\autoload\\plugged\\vim-snippets\\UltiSnips",
-    vim.fn.stdpath("config") .. "\\ultisnips"
+    vim.fn.stdpath('config') .. '/autoload/plugged/vim-snippets/UltiSnips',
+    vim.fn.stdpath('config') .. '/ultisnips'
 }
 
 
@@ -15,10 +15,10 @@ cmp.setup({
     snippet = {
         -- REQUIRED - you must specify a snippet engine
         expand = function(args)
-            -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+            -- vim.fn['vsnip#anonymous'](args.body) -- For `vsnip` users.
             -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
             -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-            vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+            vim.fn['UltiSnips#Anon'](args.body) -- For `ultisnips` users.
         end,
     },
 
@@ -35,17 +35,17 @@ cmp.setup({
 
 
         ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        ["<C-l>"] = cmp.mapping(
+        ['<C-l>'] = cmp.mapping(
             function(fallback)
-                require("cmp_nvim_ultisnips.mappings").expand_or_jump_forwards(fallback)
+                require('cmp_nvim_ultisnips.mappings').expand_or_jump_forwards(fallback)
             end,
-            { "i", "s", --[[ "c" (to enable the mapping in command mode) ]] }
+            { 'i', 's', --[[ 'c' (to enable the mapping in command mode) ]] }
         ),
-        ["<C-k>"] = cmp.mapping(
+        ['<C-k>'] = cmp.mapping(
             function(fallback)
-                require("cmp_nvim_ultisnips.mappings").jump_backwards(fallback)
+                require('cmp_nvim_ultisnips.mappings').jump_backwards(fallback)
             end,
-            { "i", "s", --[[ "c" (to enable the mapping in command mode) ]] }
+            { 'i', 's', --[[ 'c' (to enable the mapping in command mode) ]] }
         ),
     },
     sources = {
