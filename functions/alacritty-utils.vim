@@ -73,7 +73,12 @@ function OpenCmdLine(path="")
     endif
 
     let path = fnamemodify(path, ':p:h')
-    silent exe "!exo-open --launch TerminalEmulator --working-directory " . path
+    if has("win32")
+        silent exe  "!start alacritty --working-directory " . path
+    else
+        silent exe "!exo-open --launch TerminalEmulator --working-directory " . path
+    endif
+
 endfunction
 
 nnoremap <silent> <BS>a :call OpenCmdLine()<CR><ESC>
