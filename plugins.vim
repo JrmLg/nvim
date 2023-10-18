@@ -56,6 +56,7 @@ call plug#begin('~/AppData/Local/nvim/autoload/plugged')
     Plug 'vim-scripts/ReplaceWithRegister'
     Plug 'vim-scripts/loremipsum'
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+    Plug 'windwp/nvim-ts-autotag'
 
 " ---------------------------- Debug code helpers ----------------------------
     Plug 'mfussenegger/nvim-dap'

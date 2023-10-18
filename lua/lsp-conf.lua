@@ -1,7 +1,7 @@
 require("mason").setup()
 
 require("mason-lspconfig").setup({
-    ensure_installed = { "lua_ls", "tsserver", "vimls", "jsonls" },
+    ensure_installed = { 'lua_ls', 'tsserver', 'vimls', 'jsonls', 'html' },
     automatic_installation = true,
 })
 
@@ -76,6 +76,11 @@ require("lspconfig").eslint_d.setup({
 })
 
 require("lspconfig").jsonls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
+require("lspconfig").html.setup({
     on_attach = on_attach,
     capabilities = capabilities,
 })
