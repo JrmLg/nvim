@@ -65,7 +65,7 @@ endsnippet
 
 
 priority 2
-snippet "((\d+)?\s*([a-zA-Z]*)\s*)((\.\s*([a-zA-Z0-9-_\s]+))|(#\s*([a-zA-Z0-9-_\s]+))|(,\s*((\d+)?\s*lorem)?.*))+" "Insert une balise avec (class, id, contenue) ." ri
+snippet "((\d+)?\s*([a-zA-Z1-9]*)\s*)((\.\s*([a-zA-Z0-9-_\s]+))|(#\s*([a-zA-Z0-9-_\s]+))|(,\s*((\d+)?\s*lorem)?.*))+" "Insert une balise avec (class, id, contenue) ." ri
 `!p
 import lorem
 
@@ -90,9 +90,9 @@ def format_attr(attr):
 				attr = attr[1:] # Escape selector char like . or #
 				attr = " ".join(attr.split()) # Remove extra spaces
 				attr = f' {a_type}="{attr}"'
-				return True, attr 
+				return True, attr
 		return False, ""
-		
+
 have_cls, cls = format_attr(match.group(5))
 have_id, _id = format_attr(match.group(7))
 
@@ -120,17 +120,16 @@ for i in range(multiplier):
 				line.append(content.replace(lorem_match, lorem_content, 1))
 		else:
 				line.append(content)
-				
+
 		if have_multiplier:
 				line.append(end_tag)
 		result.append(''.join(line))
 
 if not snip.c:
 		snip.rv = '\n'.join(result) if have_multiplier else result[0]
-`$1`!p 
+`$1`!p
 if not have_multiplier:
 		if not snip.c:
 				snip.rv=end_tag
 `
 endsnippet
-
