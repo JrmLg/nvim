@@ -24,7 +24,7 @@
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 
-snippet '("+\s*-*)?(([^-\s]+\s*\-?)+)(\s*-*)?' "Format title in vim file" ir
+snippet '("+\s*-*)?(([^-\s]?\s*\-?)+)(\s*-*)?' "Format title in vim file" ir
 `!p
 title = match.group(2)
 title = title.strip("-")

@@ -14,4 +14,6 @@ command ConfPluginsAdd :exe 'edit' stdpath('config').'/plugins.vim'
 command ConfSettings :exe 'edit' stdpath('config').'/general/settings.vim'
 
 command OpenGithubPlug normal ^"wyi':!start "" https://github.com/<C-r>w<CR>
+command! ParseSvgReact normal <ESC>/\v("|')#[a-fA-F0-9]+("|')<CR>v/\v("|')<CR>"pyvafo<ESC>ci){ color = <C-R>p, ...props }<ESC>/><CR>i<CR><UP><TAB>{...props}<ESC>:%s/\v("|')#[a-fA-F0-9]+("|')(,)@!/{color}/g<CR>
+
 command! -nargs=* Alacritty exe OpenCmdLine(<f-args>)

@@ -43,15 +43,16 @@ set listchars=tab:=>,eol:$
 set virtualedit=onemore                 " Allow the cursor to move just past the end of the line
 set selection=inclusive
 set signcolumn=yes
+set autoread
 " set matchpairs=(:),{:},[:]
 
 
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 autocmd Filetype * setlocal formatoptions=cnrqjl " Overwrite ftplugin for formatoptions
+autocmd BufEnter,Filetype git setlocal foldmethod=syntax | setlocal foldlevel=1 " Enable folding for git commits
 
 " trigger `autoread` when files changes on disk
 " and notification after file change
-set autoread
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if !bufexists("[Command Line]") && mode() != 'c' | checktime | endif
 autocmd FileChangedShellPost * echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 

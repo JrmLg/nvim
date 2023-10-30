@@ -49,7 +49,7 @@ require('nvim-treesitter.configs').setup({
             -- Can also be a function which gets passed a table with the keys
             -- * query_string: eg '@function.inner'
             -- and should return true of false
-            include_surrounding_whitespace = true,
+            include_surrounding_whitespace = false,
         },
     },
 })
