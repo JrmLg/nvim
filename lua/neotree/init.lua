@@ -110,7 +110,7 @@ require("neo-tree").setup({
             --     nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
             -- },
             ["<2-LeftMouse>"] = "open",
-            ["<cr>"] = "open_with_window_picker",
+            ["<cr>"] = "open_with_window_picker_if_possible",
             ["<esc>"] = "cancel", -- close preview or floating neo-tree window
             ["P"] = "parent_dir",
             ["v"] = { "toggle_preview", config = { use_float = true } },

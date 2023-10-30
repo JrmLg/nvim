@@ -90,6 +90,7 @@ vnoremap <C-X> "+x
 vnoremap <C-C> "+y
 cnoremap <C-V> <C-R>*
 inoremap <silent><C-V> <ESC>:set paste<CR>"*p:set nopaste<CR>a
+nnoremap <C-A> ggVG
 inoremap <C-A> <ESC>ggVG
 vnoremap <C-A> <ESC>ggVG
 inoremap <C-BS> <C-w>

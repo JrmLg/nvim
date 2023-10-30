@@ -57,5 +57,5 @@ endfunction
 augroup MyFileExplorer
   autocmd!
   autocmd VimEnter * sil! au! FileExplorer *
-  autocmd BufEnter * let d = expand('%') | if isdirectory(d) | silent! bd | exe 'Neotree left dir=' . d | endif
+  " autocmd BufEnter * let d = expand('%') | if isdirectory(d) | silent! bd | exe 'Neotree left dir=' . d | endif
 augroup END

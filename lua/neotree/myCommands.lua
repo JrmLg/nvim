@@ -386,6 +386,15 @@ local m = {
         vim.fn.AppendRegister(relativePath)
     end,
 
+    open_with_window_picker_if_possible = function(state)
+        local commands = require("neo-tree.sources.filesystem.commands")
+        if (vim.fn.winnr() ~= 1) then
+            commands.open_with_window_picker(state)
+        else
+            commands.open(state)
+        end
+    end,
+
     increase_local_fold_level = function(state)
         local node = state.tree:get_node()
         if node.type == "directory" then
@@ -393,7 +402,11 @@ local m = {
             renderer.redraw(state)
         else
             local commands = require("neo-tree.sources.filesystem.commands")
-            commands.open_with_window_picker(state)
+            if (vim.fn.winnr() ~= 1) then
+                commands.open_with_window_picker(state)
+            else
+                commands.open(state)
+            end
         end
     end,
 

@@ -1,4 +1,4 @@
-call plug#begin('~/AppData/Local/nvim/autoload/plugged')
+call plug#begin(stdpath('config') .. '/autoload/plugged')
 
 " ------------------------- Themes and visual aspect -------------------------
     Plug 'nvim-lualine/lualine.nvim'
