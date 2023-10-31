@@ -1,7 +1,7 @@
 require("mason").setup()
 
 require("mason-lspconfig").setup({
-    ensure_installed = { 'lua_ls', 'tsserver', 'vimls', 'jsonls', 'html' },
+    ensure_installed = { 'lua_ls', 'tsserver', 'vimls', 'jsonls', 'html', 'cssls' },
     automatic_installation = true,
 })
 
@@ -54,6 +54,15 @@ require("lspconfig").tsserver.setup({
     capabilities = capabilities,
 
     settings = {
+
+        javascript = {
+            autoClosingTags = true,
+        },
+
+        typescript = {
+            autoClosingTags = true,
+        },
+
         codeActionsOnSave = {
             source = {
                 organizeImports = true,
@@ -81,6 +90,19 @@ require("lspconfig").jsonls.setup({
 })
 
 require("lspconfig").html.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        html = {
+            format = {
+                wrapLineLength = 100,
+            }
+        }
+
+    }
+})
+
+require("lspconfig").cssls.setup({
     on_attach = on_attach,
     capabilities = capabilities,
 })

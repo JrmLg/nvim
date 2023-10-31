@@ -12,6 +12,7 @@ call plug#begin(stdpath('config') .. '/autoload/plugged')
     Plug 'nvim-lua/plenary.nvim'
     Plug 'MunifTanjim/nui.nvim'
     Plug 'neoclide/vim-jsx-improve'
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 " ----------------------------- Code completion ------------------------------
     Plug 'neovim/nvim-lspconfig'
