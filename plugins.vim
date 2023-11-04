@@ -26,6 +26,8 @@ call plug#begin(stdpath('config') .. '/autoload/plugged')
     Plug 'honza/vim-snippets'
     Plug 'hrsh7th/cmp-path'
     Plug 'zbirenbaum/copilot.lua'
+    Plug 'zbirenbaum/copilot-cmp'
+    Plug 'onsails/lspkind.nvim'
 
 " --------------------------------- Linters and formater ----------------------------------
     Plug 'dense-analysis/ale'

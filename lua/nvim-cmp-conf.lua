@@ -1,6 +1,7 @@
 local cmp = require('cmp')
 local types = require('cmp.types')
 
+local lspkind = require('lspkind')
 require('cmp_nvim_ultisnips').setup({})
 
 
@@ -50,21 +51,20 @@ cmp.setup({
     },
     sources = {
         { name = 'copilot',   group_index = 2 },
-        { name = 'nvim_lsp',  group_index = 1 },
+        { name = 'nvim_lsp',  group_index = 2 },
         { name = 'path',      group_index = 2 },
         { name = 'ultisnips', group_index = 2 }, -- For ultisnips users.
-    }
-    -- sources = cmp.config.sources({
-    --     { name = 'nvim_lsp',  group_index = 1 },
-    --     { name = 'path',      group_index = 2 },
-    --     { name = 'ultisnips', gorup_index = 2 }, -- For ultisnips users.
-    --     { name = 'copilot',   group_index = 2 },
-    --     -- { name = 'vsnip' }, -- For vsnip users.
-    --     -- { name = 'luasnip' },   -- For luasnip users.
-    --     -- { name = 'snippy' }, -- For snippy users.
-    -- }, {
-    --     { name = 'buffer' },
-    -- })
+    },
+
+    -- formatting = {
+    --     format = lspkind.cmp_format({
+    --         mode = "symbol",
+    --         max_width = 50,
+    --         ellipsis_char = '...',
+    --         symbol_map = { Copilot = "" }
+    --     })
+    -- },
+
 })
 
 

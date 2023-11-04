@@ -26,12 +26,11 @@
 
 snippet html5 "Structure d'une page par défaut" i
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
 <meta charset="UTF-8">
 <title>Titre de la page</title>
-<meta lang="fr">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
@@ -65,7 +64,7 @@ endsnippet
 
 
 priority 2
-snippet "((\d+)?\s*([a-zA-Z1-9]*)\s*)((\.\s*([a-zA-Z0-9-_\s]+))|(#\s*([a-zA-Z0-9-_\s]+))|(,\s*((\d+)?\s*lorem)?.*))+" "Insert une balise avec (class, id, contenue) ." ri
+snippet "((\d+)?\s*([a-zA-Z][a-zA-Z1-9]*)\s*)((\.\s*([a-zA-Z0-9-_\s]+))|(#\s*([a-zA-Z0-9-_\s]+))|(,\s*((\d+)?\s*lorem)?.*))+" "Insert une balise avec (class, id, contenue) ." ri
 `!p
 import lorem
 

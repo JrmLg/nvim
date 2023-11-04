@@ -1,9 +1,10 @@
 require("mason").setup()
 
 require("mason-lspconfig").setup({
-    ensure_installed = { 'lua_ls', 'tsserver', 'vimls', 'jsonls', 'html', 'cssls' },
+    ensure_installed = { 'lua_ls', 'tsserver', 'vimls', 'jsonls', 'html', 'cssls', 'pylsp' },
     automatic_installation = true,
 })
+
 
 local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, {})
@@ -14,7 +15,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<C-CR>', vim.lsp.buf.hover, {})
     vim.keymap.set('n', '<Leader>f', vim.lsp.buf.format, {})
 
-    require("lsp_signature").on_attach({
+    require('lsp_signature').on_attach({
         bind = true,
         hint_enable = true,
         -- hint_prefix = '(Ctrl+Enter) ',
@@ -24,9 +25,15 @@ local on_attach = function(client, bufnr)
         hi_parameter = 'LspSignatureActiveParameter',
         handler_opts = {
             border = 'none',
+            -- border = 'rounded',
         },
 
         floating_window = false,
+
+        doc_lines = 15,
+        max_height = 15,
+        max_width = 80,
+        -- verbose = false,
     }, bufnr)
 
     if client.supports_method("textDocument/formatting") then
@@ -54,7 +61,6 @@ require("lspconfig").tsserver.setup({
     capabilities = capabilities,
 
     settings = {
-
         javascript = {
             autoClosingTags = true,
         },
@@ -103,6 +109,11 @@ require("lspconfig").html.setup({
 })
 
 require("lspconfig").cssls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
+require("lspconfig").pylsp.setup({
     on_attach = on_attach,
     capabilities = capabilities,
 })
