@@ -11,12 +11,14 @@ return {
 		local function ensure_installed(formatters)
 			for _, formatter in ipairs(formatters) do
 				if registry.has_package(formatter) then
-					if not registry.is_installed(formatter) then vim.cmd("MasonInstall " .. formatter) end
+					if not registry.is_installed(formatter) then
+						vim.cmd("MasonInstall " .. formatter)
+					end
 				end
 			end
 		end
 
-		vim.api.nvim_create_augroup("Format", {})
+		vim.api.nvim_create_augroup( "Format", {})
 		vim.api.nvim_clear_autocmds({ group = "Format" })
 		vim.api.nvim_create_autocmd("BufWritePost", {
 			group = "Format",
@@ -31,6 +33,7 @@ return {
 				args = {
 					util.escape_path(util.get_current_buffer_file_path()),
 					"--tab-width=4",
+					"--print-width=140",
 				},
 				stdin = true,
 			}

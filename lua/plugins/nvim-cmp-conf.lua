@@ -42,7 +42,7 @@ return {
 				},
 			},
 		})
-		local luasnip = require("luasnip")
+
 		require("luasnip.loaders.from_vscode").lazy_load() -- Import friendly snippets
 		require("luasnip.loaders.from_lua").lazy_load({ paths = snippetsDir }) -- Import custom snippets
 

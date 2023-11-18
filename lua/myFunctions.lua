@@ -132,7 +132,7 @@ M.openCmdLine = function(path)
 	end
 	path = vim.fn.fnamemodify(path, ":p:h")
 	path = M.normalizePath(path)
-	if vim.fn.has("win32") then
+	if vim.fn.has("win32") == 1 then
 		vim.cmd('silent! exe  "!start alacritty --working-directory ' .. path .. '"')
 	else
 		vim.cmd('silent! exe "!exo-open --launch TerminalEmulator --working-directory ' .. path .. '"')
