@@ -4,7 +4,9 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", {
 	noremap = true,
 	desc = "Disable space key.",
 })
-vim.keymap.set("n", "§", function() vim.o.list = not vim.o.list end, {
+vim.keymap.set("n", "§", function()
+	vim.o.list = not vim.o.list
+end, {
 	silent = true,
 	noremap = true,
 	desc = "Disable space key.",
@@ -40,7 +42,9 @@ vim.keymap.set("n", "<Leader><Leader>l", ":w<CR>:luafile %<CR>", {
 })
 
 -- " ----------------------- Open a command line window -------------------------
-vim.keymap.set("n", "<BS>a", function() require("myFunctions").openCmdLine("") end, {
+vim.keymap.set("n", "<BS>a", function()
+	require("myFunctions").openCmdLine("")
+end, {
 	silent = true,
 	noremap = true,
 	desc = "Open a command line window.",
@@ -266,10 +270,7 @@ vim.keymap.set("v", "<C-e>", 'c<C-r>=<C-r>"<CR>', {
 })
 
 -- " ------------------------ Mapping for file explorer -------------------------
--- vim.keymap.set("n", "<Leader><TAB>", ":Neotree toggle<cr>", {
-vim.keymap.set("n", "<Leader><TAB>", require("plugins.neotree.neotreeMyFunctions").ToggleNeotree, {
-	-- vim.keymap.set("n", "<Leader><TAB>", ":Neotree toggle reveal_force_cwd<cr>", {
-	-- vim.keymap.set("n", "<Leader><TAB>", ":Neotree toggle<cr>", {
+vim.keymap.set("n", "<Leader><TAB>", ":Neotree toggle reveal_force_cwd<cr>", {
 	silent = false,
 	noremap = true,
 	desc = "Open the file tree explorer.",

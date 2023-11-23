@@ -82,7 +82,7 @@ return {
 				floating_window = false,
 				doc_lines = 15,
 				max_height = 15,
-				max_width = 80,
+				max_width = 100,
 				-- verbose = false,
 			}, bufnr)
 
@@ -105,10 +105,9 @@ return {
 		require("neodev").setup()
 
 		-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		-- Enable emmet_ls snippet support
-		capabilities.textDocument.completion.completionItem.snippetSupport = true
-		capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+		-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+		capabilities.textDocument.completion.completionItem.snippetSupport = true -- Enable emmet_ls snippet support
 
 		-- If you want to override the default filetypes that your language server will attach to you can
 		-- define the property 'filetypes' to the map in question.
@@ -124,7 +123,7 @@ return {
 			},
 
 			tsserver = {
-				filetypes = { "javascript", "typescript", "javascriptreact" },
+				-- filetypes = { "javascript", "typescript", "javascriptreact" },
 
 				javascript = {
 					autoClosingTags = true,
