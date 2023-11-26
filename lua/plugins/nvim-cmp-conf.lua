@@ -6,73 +6,32 @@ return {
 		"hrsh7th/cmp-path",
 
 		-- Snippets
-		"L3MON4D3/LuaSnip",
-		"rafamadriz/friendly-snippets",
-		"saadparwaiz1/cmp_luasnip",
+		"SirVer/ultisnips",
+		"quangnguyen30192/cmp-nvim-ultisnips",
+		"honza/vim-snippets",
 
 		"onsails/lspkind.nvim", -- Add icon in suggestion
 	},
 
 	config = function()
 		local cmp = require("cmp")
-		local luasnip = require("luasnip")
-		local types = require("luasnip.util.types")
 		local lspkind = require("lspkind")
-		local snippetsDir = vim.fn.stdpath("config") .. "\\snippets"
 
-		vim.api.nvim_set_hl(0, "GruvboxBlue", { fg = "#7aa2f7", bg = "#292E42" })
-		vim.api.nvim_set_hl(0, "GruvboxOrange", { fg = "#FA8506", bg = "#292E42" })
+		local cmpUltisnip = require("cmp_nvim_ultisnips")
+		local cmpUltisnipMappings = require("cmp_nvim_ultisnips.mappings")
 
-		-- [[ Lua snippets ]]
-		luasnip.config.setup({
-			updateevents = "TextChanged,TextChangedI",
-			delete_check_events = "TextChanged, InsertEnter",
-			-- enable_autosnippets = true,
+		vim.g.UltiSnipsSnippetDirectories = {
+			vim.fn.stdpath("data") .. "\\Lazy\\vim-snippets\\UltiSnips",
+			vim.fn.stdpath("config") .. "\\ultisnips",
+		}
 
-			ext_opts = {
-				[types.choiceNode] = {
-					active = {
-						virt_text = { { "●", "GruvboxOrange" } },
-					},
-				},
-				[types.insertNode] = {
-					active = {
-						virt_text = { { "●", "GruvboxBlue" } },
-					},
-				},
-			},
-		})
-
-		require("luasnip.loaders.from_vscode").lazy_load() -- Import friendly snippets
-		require("luasnip.loaders.from_lua").lazy_load({ paths = snippetsDir }) -- Import custom snippets
-
-		vim.api.nvim_create_user_command("LuaSnipEditSnippets", function()
-			local filetype = vim.bo.filetype
-			local filePath = snippetsDir .. "\\" .. filetype .. ".lua"
-			local fileExist = vim.fn.filereadable(filePath)
-
-			if fileExist == 0 then
-				vim.cmd("silent !touch " .. filePath)
-				require("luasnip.loaders.from_lua").lazy_load({ paths = snippetsDir })
-			end
-
-			require("luasnip.loaders").edit_snippet_files({
-				format = function(file, source_name)
-					if source_name == "lua" then
-						return "lua"
-					end
-					return nil
-				end,
-			})
-		end, {
-			desc = "Edit snippets of current.",
-		})
+		cmpUltisnip.setup({})
 
 		---@diagnostic disable-next-line: missing-fields
 		cmp.setup({
 			snippet = {
 				expand = function(args)
-					luasnip.lsp_expand(args.body)
+					vim.fn["UltiSnips#Anon"](args.body)
 				end,
 			},
 
@@ -87,37 +46,32 @@ return {
 					behavior = cmp.ConfirmBehavior.Replace,
 					select = false,
 				}),
-				["<C-l>"] = cmp.mapping.confirm({
-					behavior = cmp.ConfirmBehavior.Replace,
-					select = true,
-				}),
+				["<C-l>"] = cmp.mapping(function(fallback)
+					if vim.fn["UltiSnips#CanExpandSnippet"]() == 1 then
+						vim.fn["UltiSnips#ExpandSnippet"]()
+					else
+						cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })(fallback)
+					end
+				end, { "i", "s" }),
 				["<C-h>"] = cmp.mapping.abort(),
 				["<C-j>"] = cmp.mapping(function(fallback)
-					if luasnip.locally_jumpable(1) then
-						luasnip.jump(1)
-					else
-						fallback()
-					end
+					cmpUltisnipMappings.jump_forwards(fallback)
 				end, { "i", "s" }),
 				["<C-k>"] = cmp.mapping(function(fallback)
-					if luasnip.locally_jumpable(-1) then
-						luasnip.jump(-1)
-					else
-						fallback()
-					end
+					cmpUltisnipMappings.jump_backwards(fallback)
 				end, { "i", "s" }),
-				["<C-i>"] = cmp.mapping(function(fallback)
-					-- Change choice
-					if luasnip.choice_active() then
-						luasnip.change_choice(-1)
-					end
-				end, { "i", "s" }),
-
-				["<C-o>"] = cmp.mapping(function(fallback)
-					if luasnip.choice_active() then
-						luasnip.change_choice(1)
-					end
-				end, { "i", "s" }),
+				-- ["<C-i>"] = cmp.mapping(function(fallback)
+				-- 	-- Change choice
+				-- 	if luasnip.choice_active() then
+				-- 		luasnip.change_choice(-1)
+				-- 	end
+				-- end, { "i", "s" }),
+				--
+				-- ["<C-o>"] = cmp.mapping(function(fallback)
+				-- 	if luasnip.choice_active() then
+				-- 		luasnip.change_choice(1)
+				-- 	end
+				-- end, { "i", "s" }),
 				["<Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item()
@@ -149,7 +103,7 @@ return {
 			}),
 
 			sources = {
-				{ name = "luasnip" },
+				{ name = "ultisnips" },
 				-- { name = "copilot" },
 				{ name = "nvim_lsp" },
 				{ name = "path" },

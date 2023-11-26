@@ -18,7 +18,7 @@ return {
 			end
 		end
 
-		vim.api.nvim_create_augroup( "Format", {})
+		vim.api.nvim_create_augroup("Format", {})
 		vim.api.nvim_clear_autocmds({ group = "Format" })
 		vim.api.nvim_create_autocmd("BufWritePost", {
 			group = "Format",
@@ -34,6 +34,8 @@ return {
 					util.escape_path(util.get_current_buffer_file_path()),
 					"--tab-width=4",
 					"--print-width=140",
+					"--single-quote=true",
+					"--semi=false",
 				},
 				stdin = true,
 			}
