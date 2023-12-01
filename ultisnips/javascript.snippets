@@ -189,8 +189,8 @@ snippet "(router|app)\.(all|delete|get|post|put)" "Ajoute une route express.js" 
 `!p
 router = match.group(1)
 routeType = match.group(2)
-snip.rv=f"{router}.{routeType}"`("${1:/index}", (req, res) => {
-${2}
+snip.rv=f"{router}.{routeType}"`("/${1:index}", (req, res) => {
+    ${2}
 })
 endsnippet
 
@@ -199,8 +199,10 @@ import express from 'express'
 
 import db from "../db/models/index.js"
 
-
-export default ['/`!p snip.rv=snip.basename`', /** @param {express.Router} router */ (router) => {
+export default [
+    '/`!p snip.rv=snip.basename`',
+    /** @param {express.Router} router */
+    (router) => {
 
     router.get('/', (req, res) => {
         ${1}

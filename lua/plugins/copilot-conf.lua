@@ -1,19 +1,19 @@
 return {
 	"zbirenbaum/copilot.lua",
-	-- dependencies = {
-	-- 	'zbirenbaum/copilot-cmp',
-	-- },
+	dependencies = {
+		"zbirenbaum/copilot-cmp",
+	},
 
 	config = function()
-		-- require('copilot_cmp').setup({
-		-- 	event = { "InsertEnter", "TextChanged" },
-		-- 	fix_pairs = true,
-		-- })
+		require("copilot_cmp").setup({
+			event = { "InsertEnter", "TextChanged" },
+			fix_pairs = true,
+		})
 
 		require("copilot").setup({
 			panel = {
-				enabled = true,
-				auto_refresh = true,
+				enabled = false,
+				auto_refresh = false,
 				keymap = {
 					jump_prev = "k",
 					jump_next = "j",
@@ -27,7 +27,7 @@ return {
 				},
 			},
 			suggestion = {
-				enabled = true,
+				enabled = false,
 				auto_trigger = false,
 				debounce = 75,
 				keymap = {

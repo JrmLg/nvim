@@ -11,6 +11,7 @@ return {
 		-- [[ Custom Debuggers ]]             -- Add your own debuggers here
 		"mfussenegger/nvim-dap-python",
 		"mxsdev/nvim-dap-vscode-js",
+
 		{
 			"microsoft/vscode-js-debug",
 			build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
@@ -22,6 +23,34 @@ return {
 
 		local dap = require("dap")
 		local dapui = require("dapui")
+
+		-- [[ Color scheme for dap]]
+
+		vim.api.nvim_set_hl(0, "DapBreakpoint", { bg = "#34394D" })
+		vim.api.nvim_set_hl(0, "DapLogPoint", { bg = "#34394D" })
+		vim.api.nvim_set_hl(0, "DapStopped", { fg = "#B21C0D", bg = "#3B2727" })
+		vim.api.nvim_set_hl(0, "DapStoppedCode", { bg = "#3B2727" })
+
+		vim.fn.sign_define(
+			"DapBreakpoint",
+			{ text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+		)
+		vim.fn.sign_define(
+			"DapBreakpointCondition",
+			{ text = "ﳁ", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+		)
+		vim.fn.sign_define(
+			"DapBreakpointRejected",
+			{ text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+		)
+		vim.fn.sign_define(
+			"DapLogPoint",
+			{ text = "", texthl = "DapLogPoint", linehl = "DapLogPoint", numhl = "DapLogPoint" }
+		)
+		vim.fn.sign_define(
+			"DapStopped",
+			{ text = "", texthl = "DapStopped", linehl = "DapStoppedCode", numhl = "DapStopped" }
+		)
 
 		-- [[ Dap UI setup ]]
 		dapui.setup({
@@ -44,18 +73,16 @@ return {
 			},
 		})
 
-		vim.keymap.set("n", "<F7>", dapui.toggle, { desc = "Debug: See last session result." })
-
-		dap.listeners.after.event_initialized["dapui_config"] = dapui.open
-		dap.listeners.before.event_terminated["dapui_config"] = dapui.close
-		dap.listeners.before.event_exited["dapui_config"] = dapui.close
+		dap.listeners.after.event_initialized["dapui_config"] = function()
+			if vim.fn.getbufinfo("%")[1].changed == 1 then
+				vim.cmd("write")
+			end
+			dapui.open()
+		end
+		-- dap.listeners.before.event_terminated["dapui_config"] = dapui.close
+		-- dap.listeners.before.event_exited["dapui_config"] = dapui.close
 
 		-- [[ Shortcuts ]]
-		vim.keymap.set("n", "<F5>", dap.continue, {
-			silent = false,
-			noremap = true,
-			desc = "Debug: Start/Continue.",
-		})
 		vim.keymap.set("n", "<F1>", dap.step_into, {
 			silent = false,
 			noremap = true,
@@ -71,15 +98,52 @@ return {
 			noremap = true,
 			desc = "Debug: Step out.",
 		})
+		vim.keymap.set("n", "<F5>", dap.continue, {
+			silent = false,
+			noremap = true,
+			desc = "Debug: Start/Continue.",
+		})
+		vim.keymap.set("n", "<F6>", dap.run_last, {
+			silent = false,
+			noremap = true,
+			desc = "Debug: Start/Continue.",
+		})
+		vim.keymap.set("n", "<F7>", dapui.toggle, {
+			silent = false,
+			noremap = true,
+			desc = "Debug: See last session result.",
+		})
+		vim.keymap.set("n", "<F8>", function()
+			dap.terminate()
+		end, {
+			silent = false,
+			noremap = true,
+			desc = "Debug: See last session result.",
+		})
 		vim.keymap.set("n", "<Leader>b", dap.toggle_breakpoint, {
 			silent = false,
 			noremap = true,
-			desc = "Debug: Toggle a [B]reakpoint.",
+			desc = "Debug: Toggle a [b]reakpoint.",
 		})
-		vim.keymap.set("n", "<leader>B", function()
-			dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
+		vim.keymap.set("n", "<Leader>B", function()
+			local message = vim.fn.input("Breakpoint message `{variable}`: ")
+			local condition = vim.fn.input("Breakpoint condition: ")
+			dap.set_breakpoint(condition, nil, message)
 		end, {
-			desc = "Debug: [D]ap set a [B]reakpoint with condition.",
+			silent = false,
+			noremap = true,
+			desc = "Debug: Toggle a [B]reakpoint with condition and message.",
+		})
+		vim.keymap.set("n", "<leader>cb", function()
+			dap.set_breakpoint(vim.fn.input("Conditionnal Breakpoint: "))
+		end, {
+			desc = "Debug: Dap set a [C]onditionnal [B]reakpoint .",
+		})
+		vim.keymap.set("n", "<leader>lb", function()
+			local message = vim.fn.input("Log message `{variable}`: ")
+			dap.set_breakpoint(nil, nil, message)
+		end, {
+			desc = "Debug: Dap set a [L]og [B]reakpoint .",
 		})
 		vim.keymap.set("n", "<Leader>dr", dap.repl.open, {
 			silent = false,
@@ -176,8 +240,15 @@ return {
 					program = "${file}",
 					console = "integratedTerminal",
 					cwd = "${workspaceFolder}",
-					trace = true,
+					trace = false,
 				},
+				-- {
+				-- 	type = "pwa-node",
+				-- 	request = "attach",
+				-- 	name = "Attach",
+				-- 	processId = require("dap.utils").pick_process,
+				-- 	cwd = "${workspaceFolder}",
+				-- },
 			}
 		end
 	end,

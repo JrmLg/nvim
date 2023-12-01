@@ -56,6 +56,7 @@ require("lazy").setup({
 		config = function()
 			require("nvim-surround").setup({
 				-- Configuration here, or leave empty to use defaults
+				move_cursor = false,
 			})
 		end,
 	},
@@ -66,7 +67,9 @@ require("lazy").setup({
 -- [[ Highlight on yank ]]
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
-	callback = function() vim.highlight.on_yank() end,
+	callback = function()
+		vim.highlight.on_yank()
+	end,
 	group = highlight_group,
 	pattern = "*",
 })

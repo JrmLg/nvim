@@ -271,7 +271,7 @@ vim.keymap.set("v", "<C-e>", 'c<C-r>=<C-r>"<CR>', {
 
 -- " ------------------------ Mapping for file explorer -------------------------
 vim.keymap.set("n", "<Leader><TAB>", ":Neotree toggle reveal_force_cwd<cr>", {
-	silent = false,
+	silent = true,
 	noremap = true,
 	desc = "Open the file tree explorer.",
 })

@@ -7,6 +7,7 @@ vim.o.hidden = true -- Required to keep multiple buffers open multiple buffers
 vim.o.wrap = false -- Display long lines as just one line
 vim.o.encoding = "utf-8" -- The encoding displayed
 vim.o.fileencoding = "utf-8" -- The encoding written to file
+vim.o.fileformat = "unix" -- This gives the <EOL> of the current buffer
 vim.o.pumheight = 10 -- Makes popup menu smaller
 vim.o.ruler = true -- Show the cursor position all the time
 vim.o.cmdheight = 2 -- More space for displaying messages
