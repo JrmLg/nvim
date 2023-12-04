@@ -81,3 +81,9 @@ vim.api.nvim_create_autocmd({ "FileChangedShellPost" }, {
 	command = 'echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None',
 	desc = "Display message when file changed.",
 })
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = { "*.ejs" },
+	command = "setlocal filetype=ejs.html",
+	desc = "Set filetype for ejs files.",
+})
