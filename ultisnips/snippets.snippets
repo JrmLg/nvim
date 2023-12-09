@@ -24,17 +24,21 @@
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 
-snippet snippet "insert un nouveau snippet" i
-`!p snip.rv="snippet"`
+
+snippet snip "insert un nouveau snippet" i
+priority ${1:1}
+`!p snip.rv="snippet"` ${2:trig} "${3:Description}" i
+${0}
 `!p snip.rv="endsnippet"`
 endsnippet
 
 snippet py "Insert un extrait de code python" i
-\`!p 
+\`!p
 ${1}
 \`
 endsnippet
 
+priority 1
 snippet pyrv "Insert un extrait de code python avec retour de valeur" i
 \`!p snip.rv=${1}\`
 endsnippet
@@ -53,8 +57,7 @@ snippet 'group\s*(\d*)' "Renvoie le groupe de l'expression régulière" ir
 \`!p snip.rv=match.group(`!p snip.rv=match.group(1)`)\`${1}
 endsnippet
 
-snippet 'v(ar)?\s*(\d+)?' "Insert une variable" ri
-${`!p snip.rv=match.group(2) if match.group(2) is not None else "1" `}${1}
+priority 0
+snippet 'var' "Insert une variable" ri
+${${1:1}:${2:defaultValue}}${0}
 endsnippet
-
-

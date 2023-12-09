@@ -36,9 +36,9 @@ variable_name = match.group(1)
 have_to = match.group(2) is not None
 
 if have_to:
-		snip.rv = f"let json_{variable_name} = JSON.stringify({variable_name});"
+    snip.rv = f"let json_{variable_name} = JSON.stringify({variable_name});"
 else:
-		snip.rv = f"JSON.stringify({variable_name})"
+    snip.rv = f"JSON.stringify({variable_name})"
 `${1}
 endsnippet
 
