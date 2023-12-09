@@ -8,11 +8,19 @@ return {
 	config = function()
 		local hooks = require("ibl.hooks")
 		hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-			vim.api.nvim_set_hl(0, "CurrentScope", { fg = "#587FC0" })
+			vim.api.nvim_set_hl(0, "CurrentScope", { fg = "#485071" })
+			vim.api.nvim_set_hl(0, "IndentBlanklineIndent", { fg = "#2C3448" })
 		end)
 
 		require("ibl").setup({
-			scope = { highlight = "CurrentScope" },
+			indent = {
+				highlight = "IndentBlanklineIndent",
+				char = "│",
+			},
+			scope = {
+				highlight = "CurrentScope",
+				show_start = false,
+			},
 			exclude = { filetypes = {
 				"startify",
 			} },
