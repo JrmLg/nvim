@@ -386,7 +386,12 @@ local m = {
 		local rootPath = getRootPath(state)
 		local absolutePath = getNodeFullPath(state)
 		local relativePath = absolutePath:gsub(rootPath, "")
-		print("Relative path copied : " .. relativePath)
+		print(vim.inspect({
+			rootPath = rootPath,
+			absolutePath = absolutePath,
+			relativePath = relativePath,
+		}))
+		-- print("Relative path copied : " .. relativePath)
 		require("myFunctions").appendRegister(relativePath, true)
 	end,
 

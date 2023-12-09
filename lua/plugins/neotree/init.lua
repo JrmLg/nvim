@@ -10,6 +10,8 @@ return {
 	},
 
 	config = function()
+		local fc = require("neo-tree.sources.filesystem.components")
+
 		vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
 		vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
 		vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
@@ -167,7 +169,8 @@ return {
 						-- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
 						-- some commands may take optional config options, see `:h neo-tree-mappings` for details
 						config = {
-							show_path = "none", -- "none", "relative", "absolute"
+							-- show_path = "none", -- "none", "relative", "absolute"
+							show_path = "relative", -- "none", "relative", "absolute"
 						},
 					},
 					["A"] = "add_directory", -- also accepts the optional config.show_path option like "add". this also supports BASH style brace expansion.
@@ -196,6 +199,15 @@ return {
 			},
 			nesting_rules = {},
 			filesystem = {
+				components = {
+					name = function(config, node, state)
+						local result = fc.name(config, node, state)
+						if node:get_depth() == 1 and node.type ~= "message" then
+							result.text = vim.fn.fnamemodify(node.path, ":t")
+						end
+						return result
+					end,
+				},
 
 				bind_to_cwd = true,
 				filtered_items = {
@@ -307,6 +319,15 @@ return {
 						["os"] = { "order_by_size", nowait = false },
 						["ot"] = { "order_by_type", nowait = false },
 					},
+				},
+			},
+			event_handlers = {
+				{
+					event = "neo_tree_popup_buffer_enter",
+					handler = function()
+						vim.cmd("imap <buffer> <C-bs> <C-w>")
+					end,
+					id = 1,
 				},
 			},
 		})
