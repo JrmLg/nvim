@@ -21,8 +21,8 @@ return {
 		local cmpUltisnipMappings = require("cmp_nvim_ultisnips.mappings")
 
 		vim.g.UltiSnipsSnippetDirectories = {
-			vim.fn.stdpath("data") .. "\\Lazy\\vim-snippets\\UltiSnips",
-			vim.fn.stdpath("config") .. "\\ultisnips",
+			vim.fn.stdpath("data") .. "/Lazy/vim-snippets/UltiSnips",
+			vim.fn.stdpath("config") .. "/ultisnips",
 		}
 
 		cmpUltisnip.setup({})
