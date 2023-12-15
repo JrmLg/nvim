@@ -45,6 +45,12 @@ require("lazy").setup({
 	"easymotion/vim-easymotion", -- Jump in editor
 	"justinmk/vim-sneak", -- Jump in line with two letter
 
+	{
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup()
+		end,
+	},
 	{ "numToStr/Comment.nvim", opts = {} }, -- "gc" to comment visual regions/lines
 
 	{ "folke/which-key.nvim", opts = {} }, -- Useful plugin to show you pending keybinds.
