@@ -41,6 +41,21 @@ return {
 			}
 		end
 
+		local function sqlfluff()
+			return {
+				exe = "sqlfluff",
+				args = {
+					"format",
+					"--disable-progress-bar",
+					"--nocolor",
+					"--dialect=postgres",
+					"-",
+				},
+				stdin = true,
+				ignore_exitcode = true,
+			}
+		end
+
 		local function stylua()
 			return {
 				exe = "stylua",
@@ -59,6 +74,7 @@ return {
 			"stylua", -- for lua file
 			"prettierd", -- for js, ts, css, html, json, md
 			"black", -- for python
+			"sqlfluff", -- for sql,
 		})
 
 		require("formatter").setup({
@@ -77,6 +93,7 @@ return {
 				lua = { stylua },
 				typescript = { prettierd },
 				typescriptreact = { prettierd },
+				sql = { sqlfluff },
 
 				-- Use the special "*" filetype for defining formatter configurations on
 				-- any filetype

@@ -140,6 +140,10 @@ return {
 				},
 			},
 
+			sqlls = {
+				filetypes = { "sql" },
+			},
+
 			vimls = {
 				filetypes = { "vim" },
 
