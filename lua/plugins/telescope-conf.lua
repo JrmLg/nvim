@@ -60,6 +60,7 @@ return {
 						["<C-k>"] = "move_selection_previous",
 						["<C-j>"] = "move_selection_next",
 						["<C-i>"] = "file_vsplit",
+						["<C-h>"] = "file_split",
 						["<ESC>"] = "close",
 						["<C-BS>"] = { "<C-u>", type = "command" },
 						["<C-c>"] = actions.delete_buffer + actions.move_to_top,
