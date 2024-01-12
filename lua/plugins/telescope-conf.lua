@@ -126,7 +126,7 @@ return {
 		end, { desc = "Search [F]iles including config files." })
 		vim.keymap.set("n", "<BS><TAB>", builtin.buffers, { desc = "[TAB] Find existing buffers." })
 		vim.keymap.set("n", "<BS>l", builtin.current_buffer_fuzzy_find, { desc = "Search a [L]ine in current buffer." })
-		vim.keymap.set("n", "<BS>ll", builtin.live_grep, { desc = "Search a [L][L]ine in current folder." })
+		vim.keymap.set("n", "<BS>ll", builtin.grep_string, { desc = "Search a [L][L]ine in current folder." })
 		vim.keymap.set("n", "<BS>lc", function()
 			require("myFunctions").telescopeLiveGrepConfigPath()
 		end, { desc = "Search a [L][L]ine in current folder." })
