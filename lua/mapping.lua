@@ -1,4 +1,4 @@
--- " ------------------------------ Basic mappings ------------------------------
+------------------------------ Basic mappings ------------------------------
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", {
 	silent = true,
 	noremap = true,
@@ -17,7 +17,7 @@ vim.keymap.set("i", "<C-l>", "<Nop>", {
 	desc = "Disable Ctrl-l in insert mode.",
 })
 
--- " -------------- Remap for dealing with word wrap in normal mode -------------
+------------- Remap for dealing with word wrap in normal mode --------------
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", {
 	silent = true,
 	noremap = true,
@@ -29,7 +29,7 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", {
 	expr = true,
 })
 
--- " ------------------ Reload mapping without restarting nvim ------------------
+------------------ Reload mapping without restarting nvim ------------------
 vim.keymap.set("n", "<Leader><Leader>c", ":w<CR>:source %<CR>", {
 	silent = false,
 	noremap = true,
@@ -41,7 +41,7 @@ vim.keymap.set("n", "<Leader><Leader>l", ":w<CR>:luafile %<CR>", {
 	desc = "Source a [L]uafile.",
 })
 
--- " ----------------------- Open a command line window -------------------------
+------------------------ Open a command line window ------------------------
 vim.keymap.set("n", "<BS>a", function()
 	require("myFunctions").openCmdLine("")
 end, {
@@ -50,14 +50,14 @@ end, {
 	desc = "Open a command line window.",
 })
 
--- " ---------- Change normal key binding because of conflic with tab -----------
+---------- Change normal key binding because of conflic with tab -----------
 vim.keymap.set("n", "<C-p>", "<C-i>", {
 	silent = false,
 	noremap = true,
 	desc = "Change the default mapping C-i to C-p.",
 })
 
--- " ------------------------ Switching between buffers -------------------------
+------------------------ Switching between buffers -------------------------
 vim.keymap.set("n", "<S-TAB>", ":bprev<CR>", {
 	silent = true,
 	noremap = true,
@@ -69,7 +69,7 @@ vim.keymap.set("n", "<TAB>", ":bnext<CR>", {
 	desc = "Go to the previous buffer.",
 })
 
--- " -------------------------- Switching between tabs --------------------------
+-------------------------- Switching between tabs --------------------------
 vim.keymap.set("n", "<C-TAB>", ":tabnext<CR>", {
 	silent = true,
 	noremap = true,
@@ -96,7 +96,7 @@ vim.keymap.set("n", "<Leader>tc", ":tabclose<CR>", {
 	desc = "[C]lose a the current [T]ab.",
 })
 
--- " ---------------------- Alternate way to save and quit ----------------------
+---------------------- Alternate way to save and quit ----------------------
 vim.keymap.set("n", "<C-Q>", ":w <bar> bd<CR>", {
 	silent = false,
 	noremap = true,
@@ -108,7 +108,7 @@ vim.keymap.set("n", "<C-c>", ":bp|:bd #<CR>", {
 	desc = "Save the current buffer and [C]lose.",
 })
 
--- " ------------------------------ Better tabbing ------------------------------
+------------------------------ Better tabbing ------------------------------
 vim.keymap.set("v", "<", "<gv", {
 	silent = false,
 	noremap = true,
@@ -120,7 +120,7 @@ vim.keymap.set("v", ">", ">gv", {
 	desc = "Stay in visual mode after tabbing.",
 })
 
--- " ------------------------ Better window organisation ------------------------
+------------------------ Better window organisation ------------------------
 vim.keymap.set("n", "<M-S-h>", "<C-w>H", {
 	silent = false,
 	noremap = true,
@@ -142,7 +142,7 @@ vim.keymap.set("n", "<M-S-l>", "<C-w>L", {
 	desc = "Put the current window on right.",
 })
 
--- " ------------------------- Better window navigation -------------------------
+------------------------- Better window navigation -------------------------
 vim.keymap.set("n", "<M-h>", "<C-w>h", {
 	silent = false,
 	noremap = true,
@@ -164,7 +164,7 @@ vim.keymap.set("n", "<M-l>", "<C-w>l", {
 	desc = "Go to the right window.",
 })
 
--- " -------------------------- Better window resizing --------------------------
+-------------------------- Better window resizing --------------------------
 vim.keymap.set("n", "<C-h>", ":vertical resize -2<CR>", {
 	silent = true,
 	noremap = true,
@@ -186,7 +186,7 @@ vim.keymap.set("n", "<C-l>", ":vertical resize +2<CR>", {
 	desc = "Resize the current window.",
 })
 
--- " ------------------------- Better window splitting --------------------------
+------------------------- Better window splitting --------------------------
 vim.keymap.set("n", "<Leader>i", ":vsplit<CR>", {
 	silent = true,
 	noremap = true,
@@ -198,7 +198,7 @@ vim.keymap.set("n", "<Leader>h", ":split<CR>", {
 	desc = "[H]orizontal split window.",
 })
 
--- " -------------------------- Better git navigation ---------------------------
+-------------------------- Better git navigation ---------------------------
 vim.keymap.set("n", "<Leader>gg", ":vertical Git<CR>", {
 	silent = true,
 	noremap = true,
@@ -245,14 +245,14 @@ vim.keymap.set("n", "<Leader>gb", ":G blame<CR>", {
 	desc = "[G]it show [B]lame.",
 })
 
---   " ----------------------------- Escape terminal ------------------------------
+----------------------------- Escape terminal ------------------------------
 vim.keymap.set("t", "<ESC>", "<C-\\><C-n>", {
 	silent = false,
 	noremap = true,
 	desc = "[E]sc the terminal.",
 })
 
---   " ------------- For compute math in insert mode and visual mode --------------
+------------- For compute math in insert mode and visual mode --------------
 vim.keymap.set("i", "<C-e>", '<ESC>:lua require("myFunctions").selectMathExpression()<CR>c<C-r>=<C-r>"<CR>', {
 	silent = false,
 	noremap = true,
@@ -269,14 +269,14 @@ vim.keymap.set("v", "<C-e>", 'c<C-r>=<C-r>"<CR>', {
 	desc = "Compute a mathematical expression.",
 })
 
--- " ------------------------ Mapping for file explorer -------------------------
+------------------------ Mapping for file explorer -------------------------
 vim.keymap.set("n", "<Leader><TAB>", ":Neotree toggle reveal_force_cwd<cr>", {
 	silent = true,
 	noremap = true,
 	desc = "Open the file tree explorer.",
 })
 
--- " ----------------------------- Windows shortcut -----------------------------
+----------------------------- Windows shortcut -----------------------------
 vim.keymap.set("n", "<C-S>", ":write<CR>", {
 	silent = true,
 	noremap = true,
@@ -343,7 +343,7 @@ vim.keymap.set("c", "<C-DEL>", "<C-RIGHT><C-w><BS>", {
 	desc = "Delete the next word.",
 })
 
--- " --------------------------- Navigate in quickfix ---------------------------
+--------------------------- Navigate in quickfix ---------------------------
 vim.keymap.set("n", "ç", ":copen<CR>:cnext<CR>", {
 	silent = true,
 	noremap = true,
@@ -370,7 +370,7 @@ vim.keymap.set("n", "<BS><ESC>", ":cclose<CR>", {
 	desc = "Close the quickfix.",
 })
 
--- " ------------------ Diagnostic mapping for neovim lspconfig -----------------
+----------------- Diagnostic mapping for neovim lspconfig ------------------
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, {
 	silent = false,
 	noremap = true,
@@ -392,14 +392,14 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, {
 	desc = "Open diagnostics list",
 })
 
--- " ---------------------------- Easymotion mapping ----------------------------
+---------------------------- Easymotion mapping ----------------------------
 vim.keymap.set({ "n", "v" }, "<DEL>", "<Plug>(easymotion-prefix)", {
 	silent = false,
 	noremap = false,
 	desc = "Open the easymotion.",
 })
 
--- " -------------------------- Quickly launch a macro --------------------------
+-------------------------- Quickly launch a macro --------------------------
 vim.keymap.set("v", "<Leader>q", ":g//norm @", {
 	silent = false,
 	noremap = true,
