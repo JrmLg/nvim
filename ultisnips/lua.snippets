@@ -37,3 +37,28 @@ vim.api.nvim_create_autocmd({ "${1:eventName}" }, {
     command = "${4:OrACommandString}",
 })
 endsnippet
+
+priority 2
+snippet keymap "Insert a new vim keymap" i
+vim.keymap.set("${2:n}", "${3}", "${4}", {
+	silent = false,
+	noremap = true,
+	desc = "${1:A short description}",
+})
+endsnippet
+
+
+priority 1
+snippet '(-*\s*-*)?(([^-\s]?\s*\-?)+)(\s*-*)?' "Format title in lua file" ir
+`!p
+title = match.group(2)
+title = title.strip("-")
+title = title.strip()
+title = title.capitalize()
+
+title = ' '.join(title.split(' '))
+title = f" {title} "
+
+snip.rv = f'--{title.center(72, "-")}--'
+`${1}
+endsnippet
