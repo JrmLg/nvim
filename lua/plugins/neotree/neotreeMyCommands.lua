@@ -385,13 +385,9 @@ local m = {
 	copy_relative_path = function(state)
 		local rootPath = getRootPath(state)
 		local absolutePath = getNodeFullPath(state)
-		local relativePath = absolutePath:gsub(rootPath, "")
-		print(vim.inspect({
-			rootPath = rootPath,
-			absolutePath = absolutePath,
-			relativePath = relativePath,
-		}))
-		-- print("Relative path copied : " .. relativePath)
+		local escapedRootPath = rootPath:gsub("[%(%)%.%%%+%-%*%?%[%^%$%]]", "%%%1")
+		local relativePath = absolutePath:gsub(escapedRootPath, ".")
+		print("Relative path copied : " .. relativePath)
 		require("myFunctions").appendRegister(relativePath, true)
 	end,
 
