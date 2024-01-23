@@ -13,3 +13,9 @@ vim.api.nvim_create_user_command("SetSvgReactProps", function()
 end, {
 	desc = "Set svg react props.",
 })
+
+vim.api.nvim_create_user_command("CloseAllExceptThisWindow", function()
+	sendVimKey([[:%bd|e#|bd#<CR>]])
+end, {
+	desc = "Set svg react props.",
+})
