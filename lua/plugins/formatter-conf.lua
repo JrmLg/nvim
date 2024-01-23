@@ -32,7 +32,7 @@ return {
 				exe = "prettierd",
 				args = {
 					util.escape_path(util.get_current_buffer_file_path()),
-					"--tab-width=4",
+					"--tab-width=2",
 					"--print-width=140",
 					"--single-quote=true",
 					"--semi=false",
