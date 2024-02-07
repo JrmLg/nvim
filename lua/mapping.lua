@@ -16,6 +16,16 @@ vim.keymap.set("i", "<C-l>", "<Nop>", {
 	noremap = true,
 	desc = "Disable Ctrl-l in insert mode.",
 })
+vim.keymap.set("n", "n", "nzzzv", {
+	silent = false,
+	noremap = true,
+	desc = "Center the screen after search next.",
+})
+vim.keymap.set("n", "N", "Nzzzv", {
+	silent = false,
+	noremap = true,
+	desc = "Center the screen after search next.",
+})
 
 ------------- Remap for dealing with word wrap in normal mode --------------
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", {

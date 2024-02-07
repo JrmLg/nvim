@@ -79,14 +79,14 @@ endsnippet
 
 priority 4
 snippet forin "Insert a for in loop." i
-for (let ${1:prop} in ${2:object}){
+for (const ${1:object} in ${2:$1s}){
     ${3}
 }
 endsnippet
 
 priority 4
 snippet forof "Insert a for of loop." i
-for (let ${1:prop} of ${2:object}){
+for (const ${1:object} of ${2:$1s}){
     ${3}
 }
 endsnippet
@@ -185,7 +185,7 @@ snip.rv = "\n".join(result)
 ${1}
 endsnippet
 
-snippet "(router|app)\.(all|delete|get|post|put)" "Ajoute une route express.js" rA
+snippet "(router|app)\.(all|delete|get|post|put)" "Ajoute une route express.js" r
 `!p
 router = match.group(1)
 routeType = match.group(2)

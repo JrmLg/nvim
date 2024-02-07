@@ -23,7 +23,8 @@ vim.o.smarttab = true -- Makes tabbing smarter will realize you have 2 vs 4
 vim.o.expandtab = true -- Converts tabs to spaces
 vim.o.smartindent = true -- Makes indenting smart
 vim.o.laststatus = 0 -- Always display the status line
-vim.wo.number = true -- Line numbers
+vim.o.number = true -- Line numbers
+vim.o.relativenumber = true -- Line numbers
 vim.o.cursorline = true -- Enable highlighting of the current line
 vim.o.background = "dark" -- tell vim what the background color looks like
 vim.o.showtabline = 2 -- Always show tabs
@@ -87,3 +88,15 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 	command = "setlocal filetype=ejs.html",
 	desc = "Set filetype for ejs files.",
 })
+
+-- vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
+-- 	desc = "Set relative line numbers in normal mode and absolute in insert mode.",
+-- 	-- pattern = { "*" },
+-- 	command = "if &nu && mode() != 'i' | set rnu   | endif",
+-- })
+--
+-- vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
+-- 	desc = "Set absolute line numbers in insert mode and relative in normal mode.",
+-- 	-- pattern = { "*" },
+-- 	command = "if &nu | set nornu | endif",
+-- })

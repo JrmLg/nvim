@@ -397,7 +397,7 @@ local m = {
 
 	open_with_window_picker_if_possible = function(state)
 		local commands = require("neo-tree.sources.filesystem.commands")
-		if vim.fn.winnr() ~= 1 then
+		if #vim.api.nvim_tabpage_list_wins(0) > 1 then
 			commands.open_with_window_picker(state)
 		else
 			commands.open(state)
@@ -411,7 +411,7 @@ local m = {
 			renderer.redraw(state)
 		else
 			local commands = require("neo-tree.sources.filesystem.commands")
-			if #vim.api.nvim_list_wins() > 3 then
+			if #vim.api.nvim_list_wins() > 1 then
 				commands.open_with_window_picker(state)
 			else
 				commands.open(state)

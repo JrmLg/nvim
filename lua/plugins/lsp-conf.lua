@@ -38,9 +38,9 @@ return {
 			)
 			vim.keymap.set(
 				"n",
-				"<BS>ws",
+				"<BS>ss",
 				builtin.lsp_dynamic_workspace_symbols,
-				{ buffer = bufnr, desc = "[W]orkspace [S]ymbols" }
+				{ buffer = bufnr, desc = "Workspace [S]ymbol[S]" }
 			)
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "[K] Hover Documentation." })
 			-- vim.keymap.set(
