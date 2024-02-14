@@ -26,7 +26,7 @@
 
 priority 5
 snippet 'use[eE](f?f?e?c?t?)(\s*[\w\s\.]+)?' "useEffect" ir
-`!p 
+`!p
 variables = match.group(2) or ''
 dependencies = ', '.join(variables.split())
 

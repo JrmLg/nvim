@@ -104,7 +104,7 @@ return {
 
 			sources = {
 				{ name = "ultisnips" },
-				{ name = "copilot" },
+				-- { name = "copilot" },
 				{ name = "nvim_lsp" },
 				{ name = "path" },
 			},

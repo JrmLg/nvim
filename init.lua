@@ -19,14 +19,18 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
--- NOTE: Here is where you install your plugins.
---     You can configure plugins using the `config` key.
---
---     You can also configure plugins after the setup call,
---     as they will be available in your neovim runtime.
 require("lazy").setup({
-	-- NOTE: First, some plugins that don't require any configuration
+	-- [[ GUI functionality]]
+	{
+		"equalsraf/neovim-gui-shim",
+		config = function()
+			if vim.fn.has("gui_running") == 1 then
+				vim.fn.execute("GuiFont! FiraCode Nerd Font Mono:h11:w55")
+			end
+		end,
+	},
 
+	-- [[ Training games]]
 	"ThePrimeagen/vim-be-good",
 
 	-- [[ Git plugins ]]

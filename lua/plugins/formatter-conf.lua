@@ -31,11 +31,13 @@ return {
 			return {
 				exe = "prettierd",
 				args = {
-					util.escape_path(util.get_current_buffer_file_path()),
+					"--config-precedence=file-override",
 					"--tab-width=2",
 					"--print-width=140",
 					"--single-quote=true",
 					"--semi=false",
+					"--check",
+					util.escape_path(util.get_current_buffer_file_path()),
 				},
 				stdin = true,
 			}

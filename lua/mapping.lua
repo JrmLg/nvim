@@ -27,6 +27,13 @@ vim.keymap.set("n", "N", "Nzzzv", {
 	desc = "Center the screen after search next.",
 })
 
+------------------------------ Register utils ------------------------------
+vim.keymap.set("x", "<leader>p", [["_dP]], {
+	silent = false,
+	noremap = true,
+	desc = "Paste without losing the current register value.",
+})
+
 ------------- Remap for dealing with word wrap in normal mode --------------
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", {
 	silent = true,
@@ -128,6 +135,26 @@ vim.keymap.set("v", ">", ">gv", {
 	silent = false,
 	noremap = true,
 	desc = "Stay in visual mode after tabbing.",
+})
+
+--------------------------- Better substitution ----------------------------
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/g<Left><Left>]], {
+	silent = false,
+	noremap = true,
+	desc = "Substitute the word under the cursor.",
+})
+
+--------------------------- Better line movement ---------------------------
+vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", {
+	silent = true,
+	noremap = true,
+	desc = "Move selected line up.",
+})
+
+vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", {
+	silent = true,
+	noremap = true,
+	desc = "Move selected line up.",
 })
 
 ------------------------ Better window organisation ------------------------
@@ -302,11 +329,11 @@ vim.keymap.set("v", "<C-S>", ":write<CR>", {
 	noremap = true,
 	desc = "[S]ave the current buffer.",
 })
-vim.keymap.set("v", "<C-X>", '"+x', {
-	silent = false,
-	noremap = true,
-	desc = "Cut the current selection put in clipboard.",
-})
+-- vim.keymap.set("v", "<C-X>", '"+x', {
+-- 	silent = false,
+-- 	noremap = true,
+-- 	desc = "Cut the current selection put in clipboard.",
+-- })
 vim.keymap.set("v", "<C-C>", '"+y', {
 	silent = false,
 	noremap = true,
