@@ -224,7 +224,7 @@ return {
 						".gitignored",
 						".env",
 						".eslintrc.json",
-						".prettierrc.json"
+						".prettierrc.json",
 					},
 					never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
 						--".DS_Store",

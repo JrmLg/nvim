@@ -143,6 +143,11 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/g<Left><Left>]]
 	noremap = true,
 	desc = "Substitute the word under the cursor.",
 })
+vim.keymap.set("v", "<leader>s", [[:s/<C-r>"/<C-r>"/g<Left><Left>]], {
+	silent = false,
+	noremap = true,
+	desc = "Substitute the last search in selection.",
+})
 
 --------------------------- Better line movement ---------------------------
 vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", {

@@ -31,7 +31,7 @@ return {
 			return {
 				exe = "prettierd",
 				args = {
-					"--config-precedence=file-override",
+					"--config-precedence=prefer-file",
 					"--tab-width=2",
 					"--print-width=140",
 					"--single-quote=true",
@@ -41,6 +41,12 @@ return {
 				},
 				stdin = true,
 			}
+		end
+
+		local function eslintd()
+			if vim.loop.fs_stat(".eslintrc.js") then
+				vim.cmd("EslintFixAll")
+			end
 		end
 
 		local function sqlfluff()
@@ -87,14 +93,14 @@ return {
 			filetype = {
 				css = { prettierd },
 				html = { prettierd },
-				javascript = { prettierd },
-				javascriptreact = { prettierd },
+				javascript = { eslintd, prettierd },
+				javascriptreact = { eslintd, prettierd },
 				json = { prettierd },
 				markdown = { prettierd },
 				python = { require("formatter.filetypes.python").black },
 				lua = { stylua },
-				typescript = { prettierd },
-				typescriptreact = { prettierd },
+				typescript = { eslintd, prettierd },
+				typescriptreact = { eslintd, prettierd },
 				sql = { sqlfluff },
 
 				-- Use the special "*" filetype for defining formatter configurations on

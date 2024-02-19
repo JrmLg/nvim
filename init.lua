@@ -26,6 +26,7 @@ require("lazy").setup({
 		config = function()
 			if vim.fn.has("gui_running") == 1 then
 				vim.fn.execute("GuiFont! FiraCode Nerd Font Mono:h11:w55")
+				print("GUI is running")
 			end
 		end,
 	},
