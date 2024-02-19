@@ -43,8 +43,8 @@ return {
 			}
 		end
 
-		local function eslintd()
-			if vim.loop.fs_stat(".eslintrc.js") then
+		local function eslint()
+			if vim.loop.fs_stat(".eslintrc.js") or vim.loop.fs_stat(".eslintrc.json") then
 				vim.cmd("EslintFixAll")
 			end
 		end
@@ -93,14 +93,14 @@ return {
 			filetype = {
 				css = { prettierd },
 				html = { prettierd },
-				javascript = { eslintd, prettierd },
-				javascriptreact = { eslintd, prettierd },
+				javascript = { eslint, prettierd },
+				javascriptreact = { eslint, prettierd },
 				json = { prettierd },
 				markdown = { prettierd },
 				python = { require("formatter.filetypes.python").black },
 				lua = { stylua },
-				typescript = { eslintd, prettierd },
-				typescriptreact = { eslintd, prettierd },
+				typescript = { eslint, prettierd },
+				typescriptreact = { eslint, prettierd },
 				sql = { sqlfluff },
 
 				-- Use the special "*" filetype for defining formatter configurations on
