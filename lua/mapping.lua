@@ -354,6 +354,11 @@ vim.keymap.set("i", "<C-V>", '<ESC>:set paste<CR>"*p:set nopaste<CR>a', {
 	noremap = true,
 	desc = "Paste the clipboard.",
 })
+vim.keymap.set("v", "<C-V>", 'x:set paste<CR>"*p:set nopaste<CR>a', {
+	silent = true,
+	noremap = true,
+	desc = "Paste the clipboard over the selection.",
+})
 vim.keymap.set("i", "<C-A>", "<ESC>ggVG", {
 	silent = false,
 	noremap = true,
