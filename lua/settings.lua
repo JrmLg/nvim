@@ -16,8 +16,8 @@ vim.o.cursorline = true -- Enable highlighting of the current line
 vim.o.encoding = "utf-8" -- The encoding displayed
 vim.o.expandtab = true -- Converts tabs to spaces
 vim.o.fileencoding = "utf-8" -- The encoding written to file
-vim.o.fileformat = "unix" -- This gives the <EOL> of the current buffer
-vim.o.fileformats = "unix,dos" -- This gives the <EOL> of the current buffer
+vim.o.fileformat = "dos" -- This gives the <EOL> of the current buffer
+vim.o.fileformats = "dos,unix" -- This gives the <EOL> of the current buffer
 vim.o.foldlevel = 9
 vim.o.foldmethod = "indent" -- more indent means a higher fold level
 vim.o.formatoptions = "cnrqjl" -- Stop newline continution of comments
@@ -30,6 +30,7 @@ vim.o.listchars = "tab:=>,eol:$"
 vim.o.listchars = vim.o.listchars .. ",space:."
 vim.o.mouse = "a" -- Enable your mouse
 vim.o.number = true -- Line numbers
+vim.o.numberwidth = 5 -- Make the gutter wider by default
 vim.o.pumheight = 10 -- Makes popup menu smaller
 vim.o.relativenumber = true -- Line numbers
 vim.o.ruler = true -- Show the cursor position all the time
@@ -92,14 +93,32 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 	desc = "Set filetype for ejs files.",
 })
 
--- vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
--- 	desc = "Set relative line numbers in normal mode and absolute in insert mode.",
--- 	-- pattern = { "*" },
--- 	command = "if &nu && mode() != 'i' | set rnu   | endif",
+-- Relative line numbers
+vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
+	desc = "Set relative line numbers in normal mode and absolute in insert mode.",
+	-- pattern = { "*" },
+	command = "if &nu && mode() != 'i' | set rnu | endif",
+})
+
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
+	desc = "Set absolute line numbers in insert mode and relative in normal mode.",
+	-- pattern = { "*" },
+	command = "if &nu | set nornu | endif",
+})
+
+-- vim.keymap.set("n", ":", function()
+-- 	vim.cmd("set nornu")
+-- 	vim.cmd(":")
+-- end, {
+-- 	expr = true,
+-- 	silent = false,
+-- 	noremap = true,
+-- 	desc = "A short description",
 -- })
 --
--- vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
--- 	desc = "Set absolute line numbers in insert mode and relative in normal mode.",
--- 	-- pattern = { "*" },
--- 	command = "if &nu | set nornu | endif",
+-- vim.keymap.set("n", ":", "'<cmd>set nornu<cr>' . ':' ", {
+-- 	expr = true,
+-- 	silent = false,
+-- 	noremap = true,
+-- 	desc = "A short description",
 -- })

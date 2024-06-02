@@ -16,16 +16,6 @@ vim.keymap.set("i", "<C-l>", "<Nop>", {
 	noremap = true,
 	desc = "Disable Ctrl-l in insert mode.",
 })
-vim.keymap.set("n", "n", "nzzzv", {
-	silent = false,
-	noremap = true,
-	desc = "Center the screen after search next.",
-})
-vim.keymap.set("n", "N", "Nzzzv", {
-	silent = false,
-	noremap = true,
-	desc = "Center the screen after search next.",
-})
 
 ------------------------------ Register utils ------------------------------
 vim.keymap.set("x", "<leader>p", [["_dP]], {
@@ -354,21 +344,21 @@ vim.keymap.set("i", "<C-V>", '<ESC>:set paste<CR>"*p:set nopaste<CR>a', {
 	noremap = true,
 	desc = "Paste the clipboard.",
 })
-vim.keymap.set("v", "<C-V>", 'x:set paste<CR>"*p:set nopaste<CR>a', {
-	silent = true,
-	noremap = true,
-	desc = "Paste the clipboard over the selection.",
-})
-vim.keymap.set("i", "<C-A>", "<ESC>ggVG", {
-	silent = false,
-	noremap = true,
-	desc = "Select [A]ll the buffer.",
-})
-vim.keymap.set("v", "<C-A>", "<ESC>ggVG", {
-	silent = false,
-	noremap = true,
-	desc = "Select [A]ll the buffer.",
-})
+-- vim.keymap.set("v", "<C-V>", 'x:set paste<CR>"*p:set nopaste<CR>a', {
+-- 	silent = true,
+-- 	noremap = true,
+-- 	desc = "Paste the clipboard over the selection.",
+-- })
+-- vim.keymap.set("i", "<C-A>", "<ESC>ggVG", {
+-- 	silent = false,
+-- 	noremap = true,
+-- 	desc = "Select [A]ll the buffer.",
+-- })
+-- vim.keymap.set("v", "<C-A>", "<ESC>ggVG", {
+-- 	silent = false,
+-- 	noremap = true,
+-- 	desc = "Select [A]ll the buffer.",
+-- })
 vim.keymap.set("i", "<C-BS>", "<C-w>", {
 	silent = false,
 	noremap = true,

@@ -40,11 +40,11 @@ require("lazy").setup({
 
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 
-	"vim-scripts/ReplaceWithRegister", -- Automatically disables search highlighting
-	"romainl/vim-cool", -- Draw cursor line only on current window
-	"inkarkat/vim-CursorLineCurrentWindow", -- Add some text objects
-	"wellle/targets.vim", -- Closing tag in javascript React
-	"windwp/nvim-ts-autotag",
+	"vim-scripts/ReplaceWithRegister",
+	"romainl/vim-cool", -- Automatically disables search highlighting
+	"inkarkat/vim-CursorLineCurrentWindow", -- Draw cursor line only on current window
+	"wellle/targets.vim", -- Add some text objects
+	"windwp/nvim-ts-autotag", -- Closing tag in javascript React
 
 	-- [[ Navigation helpers ]]
 	"easymotion/vim-easymotion", -- Jump in editor

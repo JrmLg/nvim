@@ -36,17 +36,13 @@ return {
 					"--print-width=140",
 					"--single-quote=true",
 					"--semi=false",
-					"--check",
+					"--end-of-line=lf",
+					"--use-tabs=false",
+					"--indent-style=space",
 					util.escape_path(util.get_current_buffer_file_path()),
 				},
 				stdin = true,
 			}
-		end
-
-		local function eslint()
-			if vim.loop.fs_stat(".eslintrc.js") or vim.loop.fs_stat(".eslintrc.json") then
-				vim.cmd("EslintFixAll")
-			end
 		end
 
 		local function sqlfluff()
@@ -78,11 +74,21 @@ return {
 			}
 		end
 
+		local function rustfmt()
+			return {
+				exe = "rustfmt",
+				args = { "--edition 2021" },
+				stdin = true,
+			}
+		end
+
 		ensure_installed({
 			"stylua", -- for lua file
 			"prettierd", -- for js, ts, css, html, json, md
 			"black", -- for python
 			"sqlfluff", -- for sql,
+			"rustfmt", -- for rust
+			"codelldb", --for debuging rust
 		})
 
 		require("formatter").setup({
@@ -93,15 +99,16 @@ return {
 			filetype = {
 				css = { prettierd },
 				html = { prettierd },
-				javascript = { eslint, prettierd },
-				javascriptreact = { eslint, prettierd },
+				javascript = { prettierd },
+				javascriptreact = { prettierd },
 				json = { prettierd },
 				markdown = { prettierd },
 				python = { require("formatter.filetypes.python").black },
 				lua = { stylua },
-				typescript = { eslint, prettierd },
-				typescriptreact = { eslint, prettierd },
-				sql = { sqlfluff },
+				typescript = { prettierd },
+				typescriptreact = { prettierd },
+				rust = { rustfmt },
+				-- sql = { sqlfluff },
 
 				-- Use the special "*" filetype for defining formatter configurations on
 				-- any filetype

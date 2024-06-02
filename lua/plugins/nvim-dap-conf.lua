@@ -3,8 +3,13 @@
 return {
 	"mfussenegger/nvim-dap",
 
+	event = "VeryLazy",
+
 	dependencies = {
+		"rcarriga/nvim-notify",
+
 		"rcarriga/nvim-dap-ui",
+		"nvim-neotest/nvim-nio", -- dap-ui dependency
 		"theHamsta/nvim-dap-virtual-text",
 		"williamboman/mason.nvim",
 
@@ -26,13 +31,13 @@ return {
 
 		-- [[ Color scheme for dap]]
 
-		vim.api.nvim_set_hl(0, "DapBreakpoint", { bg = "#34394D" })
+		vim.api.nvim_set_hl(0, "DapBreapoint", { bg = "#34394D" })
 		vim.api.nvim_set_hl(0, "DapLogPoint", { bg = "#34394D" })
 		vim.api.nvim_set_hl(0, "DapStopped", { fg = "#B21C0D", bg = "#3B2727" })
 		vim.api.nvim_set_hl(0, "DapStoppedCode", { bg = "#3B2727" })
 
 		vim.fn.sign_define(
-			"DapBreakpoint",
+			"DapBreapoint",
 			{ text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
 		)
 		vim.fn.sign_define(
@@ -251,5 +256,60 @@ return {
 				-- },
 			}
 		end
+
+		local codelldb_root = vim.env.MASON .. "/packages/codelldb/extension/"
+		local codelldb_path = codelldb_root .. "adapter/codelldb.exe"
+		local liblldb_path = codelldb_root .. "lldb/lib/liblldb.lib"
+
+		dap.adapters.codelldb = {
+			type = "server",
+			port = "${port}",
+			-- host = "127.0.0.1",
+			executable = {
+				command = codelldb_path,
+				args = { "--port", "${port}" },
+			},
+		}
+
+		-- dap.adapters.codelldb = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path)
+
+		dap.configurations.rust = {
+			{
+				type = "codelldb",
+				name = "Lauch file",
+				request = "launch",
+				-- program = "${file}",
+				program = function()
+					vim.fn.jobstart("cargo build", {
+
+						on_exit = function(_, code)
+							if code ~= 0 then
+								return
+							end
+						end,
+
+						on_stderr = function(_, data)
+							if vim.inspect(data):find("error") then
+								local notify = require("notify")
+								notify(data, "error", {
+									title = "Cargo build failed",
+									timeout = 14000,
+								})
+							end
+						end,
+					})
+
+					local filename = vim.fn.glob(vim.fn.getcwd() .. "/target/debug/*.exe")
+
+					if filename == nil or filename == "" then
+						return vim.fn.input(vim.fn.getcwd() .. "/target/debug/", "file")
+					else
+						return filename
+					end
+				end,
+				cwd = "${workspaceFolder}",
+				stopOnEntry = false,
+			},
+		}
 	end,
 }

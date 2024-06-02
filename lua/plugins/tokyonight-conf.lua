@@ -1,4 +1,5 @@
 return {
+
 	"folke/tokyonight.nvim",
 	priority = 1000,
 	config = function()
@@ -36,7 +37,9 @@ return {
 			---@param highlights Highlights
 			---@param colors ColorScheme
 			on_highlights = function(hl, c)
-				hl.LineNr = { fg = "#A9B1D6" }
+				hl.LineNr = { fg = "#A7CEFF" }
+				hl.LineNrAbove = { fg = "#A7CEFF" }
+				hl.LineNrBelow = { fg = "#A7CEFF" }
 			end,
 		})
 
