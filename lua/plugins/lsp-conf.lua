@@ -33,88 +33,111 @@ return {
 		local servers = {
 
 			lua_ls = {
-				filetypes = { "lua" },
+				settings = {
+					filetypes = { "lua" },
 
-				Lua = {
-					workspace = { checkThirdParty = false },
-					telemetry = { enable = false },
+					Lua = {
+						workspace = { checkThirdParty = false },
+						telemetry = { enable = false },
+					},
 				},
 			},
 
 			tsserver = {
 				-- filetypes = { "javascript", "typescript", "javascriptreact" },
+				on_attach = function(client, bufnr)
+					local function organizeImports()
+						local params = {
+							command = "_typescript.organizeImports",
+							arguments = { vim.api.nvim_buf_get_name(0) },
+							title = "",
+						}
+						vim.lsp.buf.execute_command(params)
+					end
 
-				javascript = {
-					autoClosingTags = true,
-				},
+					vim.keymap.set("n", "oi", organizeImports, { buffer = bufnr, desc = "[O]rganize to [I]mports." })
 
-				typescript = {
-					autoClosingTags = true,
-				},
+					print("tsserver attached")
+				end,
 
-				codeActionsOnSave = {
-					source = {
-						organizeImports = true,
+				settings = {
+					javascript = {
+						autoClosingTags = true,
+					},
+
+					typescript = {
+						autoClosingTags = true,
+					},
+
+					codeActionsOnSave = {
+						source = {
+							organizeImports = true,
+						},
 					},
 				},
 			},
 
 			sqlls = {
-				filetypes = { "sql" },
+				settings = { filetypes = { "sql" } },
 			},
 
 			vimls = {
-				filetypes = { "vim" },
-
-				isNeovim = true,
+				settings = {
+					filetypes = { "vim" },
+					isNeovim = true,
+				},
 			},
 
 			eslint = {
-				filetypes = { "javascript", "typescript" },
+				settings = { filetypes = { "javascript", "typescript" } },
 			},
 
 			jsonls = {
-				filetypes = { "json" },
+				settings = { filetypes = { "json" } },
 			},
 
 			cssls = {
-				filetypes = { "css" },
+				settings = { filetypes = { "css" } },
 			},
 
 			emmet_ls = {
-				filetypes = {
-					"css",
-					"eruby",
-					"html",
-					-- "javascript",
-					-- "typescript",
-					-- "javascriptreact",
-					-- "typescriptreact",
-					"less",
-					"sass",
-					"scss",
-					"svelte",
-					"pug",
-					"vue",
+				settings = {
+					filetypes = {
+						"css",
+						"eruby",
+						"html",
+						-- "javascript",
+						-- "typescript",
+						-- "javascriptreact",
+						-- "typescriptreact",
+						"less",
+						"sass",
+						"scss",
+						"svelte",
+						"pug",
+						"vue",
+					},
 				},
 			},
 
 			html = {
-				filetypes = { "html", "twig", "hbs" },
-				html = {
-					format = {
-						wrapLineLength = 100,
-						indentInnerHtml = false,
+				settings = {
+					filetypes = { "html", "twig", "hbs" },
+					html = {
+						format = {
+							wrapLineLength = 100,
+							indentInnerHtml = false,
+						},
 					},
 				},
 			},
 
 			pyright = {
-				filetypes = { "python" },
+				settings = { filetypes = { "python" } },
 			},
 
 			rust_analyzer = {
-				filetypes = { "rust" },
+				settings = { filetypes = { "rust" } },
 			},
 		}
 
@@ -130,9 +153,15 @@ return {
 			function(server_name)
 				require("lspconfig")[server_name].setup({
 					capabilities = capabilities,
-					on_attach = require("lsp-mapping").on_attach,
-					settings = servers[server_name],
-					filetypes = (servers[server_name] or {}).filetypes,
+					on_attach = function(client, bufnr)
+						require("lsp-mapping").on_attach(client, bufnr)
+
+						if servers[server_name].on_attach then
+							servers[server_name].on_attach(client, bufnr)
+						end
+					end,
+					settings = servers[server_name].settings or {},
+					filetypes = (servers[server_name].settings or {}).filetypes,
 				})
 			end,
 		})
