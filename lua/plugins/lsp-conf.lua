@@ -56,8 +56,6 @@ return {
 					end
 
 					vim.keymap.set("n", "go", organizeImports, { buffer = bufnr, desc = "[G]et organized [I]mports." })
-
-					print("tsserver attached")
 				end,
 
 				settings = {
