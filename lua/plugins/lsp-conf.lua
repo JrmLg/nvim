@@ -55,7 +55,7 @@ return {
 						vim.lsp.buf.execute_command(params)
 					end
 
-					vim.keymap.set("n", "oi", organizeImports, { buffer = bufnr, desc = "[O]rganize to [I]mports." })
+					vim.keymap.set("n", "go", organizeImports, { buffer = bufnr, desc = "[G]et organized [I]mports." })
 
 					print("tsserver attached")
 				end,
