@@ -234,7 +234,7 @@ return {
 			-- log_console_level = vim.log.levels.ERROR -- Logging level for output to console. Set to false to disable console output.
 		})
 
-		local js_based_languages = { "typescript", "javascript", "javascriptreact" }
+		local js_based_languages = { "javascript", "javascriptreact" }
 
 		for _, language in ipairs(js_based_languages) do
 			dap.configurations[language] = {
@@ -256,6 +256,19 @@ return {
 				-- },
 			}
 		end
+
+		dap.configurations.typescript = {
+			{
+				name = "Launch file",
+				type = "pwa-node",
+				request = "launch",
+				runtimeArgs = { "-r", "ts-node/register" },
+				program = "${file}",
+				console = "integratedTerminal",
+				cwd = "${workspaceFolder}",
+				trace = false,
+			},
+		}
 
 		local codelldb_root = vim.env.MASON .. "/packages/codelldb/extension/"
 		local codelldb_path = codelldb_root .. "adapter/codelldb.exe"

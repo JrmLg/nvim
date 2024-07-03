@@ -26,8 +26,13 @@
 
 
 priority 4
-snippet cl "Console.log" w
+snippet cl "console.log" w
 console.log(${1})
+endsnippet
+
+priority 4
+snippet ce "console.error" w
+console.error(${1})
 endsnippet
 
 snippet '(\w+)\.(to)?json' "Transform un objet en JSON." ir
@@ -168,7 +173,7 @@ snip.rv=exportInfo
 
 endsnippet
 
-snippet /**  "Multiline comment" iA
+snippet /**  "Multiline comment" i
 /**${1}*/
 endsnippet
 
