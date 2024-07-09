@@ -1,4 +1,5 @@
 require("settings")
+require("autoCommands")
 require("mapping")
 require("myCommands")
 
@@ -43,13 +44,18 @@ require("lazy").setup({
 	"vim-scripts/ReplaceWithRegister",
 	"romainl/vim-cool", -- Automatically disables search highlighting
 	"inkarkat/vim-CursorLineCurrentWindow", -- Draw cursor line only on current window
-	"wellle/targets.vim", -- Add some text objects
 	"windwp/nvim-ts-autotag", -- Closing tag in javascript React
 
 	-- [[ Navigation helpers ]]
 	"easymotion/vim-easymotion", -- Jump in editor
-	"justinmk/vim-sneak", -- Jump in line with two letter
-
+	{
+		"wellle/targets.vim", -- Add some text objects
+		config = function()
+			vim.g.targets_argOpenning = "[([{<]"
+			vim.g.targets_argClosing = "[])}>]"
+		end,
+	}, -- Jump in line with two letter
+	"justinmk/vim-sneak",
 	{
 		"norcalli/nvim-colorizer.lua",
 		config = function()
