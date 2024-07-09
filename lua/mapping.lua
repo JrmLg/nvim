@@ -24,14 +24,13 @@ vim.keymap.set("x", "<leader>p", [["_dP]], {
 	desc = "Paste without losing the current register value.",
 })
 
-------------- Remap for dealing with word wrap in normal mode --------------
-vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", {
-	silent = true,
+--- Remap for dealing with word wrap in normal mode and restore poistion ---
+vim.keymap.set("n", "j", [[v:count ? (v:count >= 2 ? "m'" . v:count : '') . 'j' : 'gj']], {
 	noremap = true,
 	expr = true,
 })
-vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", {
-	silent = true,
+
+vim.keymap.set("n", "k", [[v:count ? (v:count >= 2 ? "m'" . v:count : '') . 'k' : 'gk']], {
 	noremap = true,
 	expr = true,
 })
