@@ -1,5 +1,7 @@
 local function on_attach(client, bufnr)
 	local builtin = require("telescope.builtin")
+	-- fix bug on format with gq shortcut
+	vim.api.nvim_buf_set_option(bufnr, "formatexpr", "")
 
 	vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, { buffer = bufnr, desc = "[R]e[n]ame." })
 	vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, desc = "[C]ode [A]ction." })
