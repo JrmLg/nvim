@@ -139,16 +139,14 @@ M.openCmdLine = function(path)
 	end
 end
 
-M.selectMathExpression = function()
+M.selectRegex = function(regex)
 	local startLine = vim.fn.line(".")
 	vim.fn.cursor({ startLine, 1 })
-	-- vim.cmd('call cursor(' .. startLine .. ', 1)')
-	local re = [[\v(([-\+](\s*\()*|[-\+\(])\s*)?([0-9\.]+\s*)(\s*[-\+\/*]\s*((\(\s*)*[0-9\.]+|[0-9\.]*)(\s*\))*)+]]
-	local match, t = vim.fn.searchpos(re, "ne", startLine)
+	local match, t = vim.fn.searchpos(regex, "ne", startLine)
 	local endMatch = match[2]
 
 	if endMatch then
-		vim.fn.search(re, "c", startLine)
+		vim.fn.search(regex, "c", startLine)
 		vim.cmd("normal! v")
 		if vim.o.selection == "inclusive" then
 			endMatch = endMatch - 1
@@ -156,6 +154,58 @@ M.selectMathExpression = function()
 		vim.fn.cursor({ startLine, endMatch })
 		vim.cmd("normal! l")
 	end
+
+	return match, t
+end
+
+M.selectMathExpression = function()
+	local re = [[\v(([-\+](\s*\()*|[-\+\(])\s*)?([0-9\.]+\s*)(\s*[-\+\/*]\s*((\(\s*)*[0-9\.]+|[0-9\.]*)(\s*\))*)+]]
+	M.selectRegex(re)
+end
+
+M.binToHex = function()
+	local re = [[\v<(0b)?[01]+>]]
+	local match, t = M.selectRegex(re)
+	vim.cmd("normal! x")
+	local binaryNumber = vim.fn.getreg('"')
+	local hasPrefix = string.sub(binaryNumber, 1, 2) == "0b"
+
+	if hasPrefix then
+		binaryNumber = string.sub(binaryNumber, 3)
+		vim.cmd("normal! a0x")
+	end
+
+	local hexNumber = string.format("%X", tonumber(binaryNumber, 2))
+	vim.cmd("normal! a" .. hexNumber)
+end
+
+M.hexToBin = function()
+	local re = [[\v<(0x)?[0-9a-fA-F]+>]]
+	local match, t = M.selectRegex(re)
+	vim.cmd("normal! x")
+	local hexNumber = vim.fn.getreg('"')
+	local hasPrefix = string.sub(hexNumber, 1, 2) == "0x"
+
+	if hasPrefix then
+		hexNumber = string.sub(hexNumber, 3)
+		vim.cmd("normal! a0b")
+	end
+
+	local binaryNumber = M.toBin(tonumber(hexNumber, 16))
+	vim.cmd("normal! a" .. binaryNumber)
+end
+
+M.toBin = function(number)
+	local bin = ""
+	if number == 0 then
+		return "0"
+	end
+	while number > 0 do
+		local remainder = number % 2
+		bin = remainder .. bin
+		number = math.floor(number / 2)
+	end
+	return bin
 end
 
 M.saveLastReg = function()

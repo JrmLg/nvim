@@ -300,6 +300,20 @@ vim.keymap.set("v", "<C-e>", 'c<C-r>=<C-r>"<CR>', {
 	desc = "Compute a mathematical expression.",
 })
 
+------------ Select binary number and convert it to hexadecimal ------------
+vim.keymap.set("n", "<Leader>bh", ':lua require("myFunctions").binToHex()<CR>', {
+	silent = true,
+	noremap = true,
+	desc = "Convert a binary number to decimal.",
+})
+
+------------ Select hexadecimal number and convert it to binary ------------
+vim.keymap.set("n", "<Leader>hb", ':lua require("myFunctions").hexToBin()<CR>', {
+	silent = true,
+	noremap = true,
+	desc = "Convert a binary number to decimal.",
+})
+
 ------------------------ Mapping for file explorer -------------------------
 vim.keymap.set("n", "<Leader><TAB>", ":Neotree toggle reveal_force_cwd<cr>", {
 	silent = true,
