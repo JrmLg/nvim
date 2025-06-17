@@ -132,7 +132,7 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/g<Left><Left>]]
 	noremap = true,
 	desc = "Substitute the word under the cursor.",
 })
-vim.keymap.set("v", "<leader>s", [[:s/<C-r>"/<C-r>"/g<Left><Left>]], {
+vim.keymap.set("v", "<leader>s", [[:s/<C-r>//<C-r>"/g<Left><Left>]], {
 	silent = false,
 	noremap = true,
 	desc = "Substitute the last search in selection.",
@@ -304,14 +304,14 @@ vim.keymap.set("v", "<C-e>", 'c<C-r>=<C-r>"<CR>', {
 vim.keymap.set("n", "<Leader>bh", ':lua require("myFunctions").binToHex()<CR>', {
 	silent = true,
 	noremap = true,
-	desc = "Convert a binary number to decimal.",
+	desc = "Convert a binary number to hexadecimal.",
 })
 
 ------------ Select hexadecimal number and convert it to binary ------------
 vim.keymap.set("n", "<Leader>hb", ':lua require("myFunctions").hexToBin()<CR>', {
 	silent = true,
 	noremap = true,
-	desc = "Convert a binary number to decimal.",
+	desc = "Convert a hexadecimal number to binary.",
 })
 
 ------------------------ Mapping for file explorer -------------------------

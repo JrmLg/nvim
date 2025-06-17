@@ -24,7 +24,12 @@
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 
-priority 2
+priority 5
+snippet cl "console.log" w
+console.log(${1})
+endsnippet
+
+priority 3
 snippet '\bl\s*((\s*\w+)*)?\s*' "Insert la définition d'une lambda" wr
 `!p
 arguments = match.group(1)

@@ -140,7 +140,7 @@ return {
 		vim.keymap.set("n", "<BS>h", builtin.help_tags, { desc = "Search [H]elp." })
 		vim.keymap.set("n", "<BS>/", builtin.search_history, { desc = "[/] Search search in history." })
 		vim.keymap.set("n", "<BS>:", builtin.command_history, { desc = "[:] Search command in history." })
-		vim.keymap.set("n", "<BS>s", builtin.treesitter, { desc = "Search [S]ymbol with treesitter." })
+		vim.keymap.set("n", "<BS>ts", builtin.treesitter, { desc = "Search with [T]reesitter [S]ymbol." })
 
 		vim.keymap.set("n", "<BS>gc", builtin.git_bcommits, { desc = "Search [G]it [C]ommit of current buffer." })
 		vim.keymap.set("n", "<BS>gcc", builtin.git_commits, { desc = "Search [G]it [C]ommit." })

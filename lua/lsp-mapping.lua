@@ -9,12 +9,13 @@ local function on_attach(client, bufnr)
 	vim.keymap.set("n", "ge", builtin.lsp_references, { buffer = bufnr, desc = "[G]o to r[E]ferences." })
 	vim.keymap.set("n", "gi", builtin.lsp_implementations, { buffer = bufnr, desc = "[G]o to [I]mplementation." })
 	vim.keymap.set("n", "<BS>D", builtin.lsp_definitions, { buffer = bufnr, desc = "Type [D]efinition." })
-	vim.keymap.set("n", "<BS>ds", builtin.lsp_document_symbols, { buffer = bufnr, desc = "[D]ocument [S]ymbols." })
+	vim.keymap.set("n", "<BS>s", builtin.lsp_document_symbols, { buffer = bufnr, desc = "Document [S]ymbols." })
+	vim.keymap.set("n", "<BS>ss", builtin.lsp_workspace_symbols, { buffer = bufnr, desc = "Workspace [S]ymbol" })
 	vim.keymap.set(
 		"n",
-		"<BS>ss",
+		"<BS>ds",
 		builtin.lsp_dynamic_workspace_symbols,
-		{ buffer = bufnr, desc = "Workspace [S]ymbol[S]" }
+		{ buffer = bufnr, desc = "Workspace [D]ynamic [S]ymbol" }
 	)
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "[K] Hover Documentation." })
 	-- vim.keymap.set(
