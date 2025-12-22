@@ -133,7 +133,7 @@ M.openCmdLine = function(path)
 	path = vim.fn.fnamemodify(path, ":p:h")
 	path = M.normalizePath(path)
 	if vim.fn.has("win32") == 1 then
-		vim.cmd('silent! exe  "!start alacritty --working-directory ' .. path .. '"')
+		vim.cmd('silent! exe "!start powershell -NoExit -Command \\"Set-Location -LiteralPath \'' .. path .. '\'\\""')
 	else
 		vim.cmd('silent! exe "!exo-open --launch TerminalEmulator --working-directory ' .. path .. '"')
 	end
